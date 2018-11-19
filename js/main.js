@@ -40,8 +40,8 @@ map((it) => it.content);
 
 let current = 0;
 const select = (index) => {
-  index = index < 0 ? screens.length - 1 : index;
-  index = index >= screens.length ? 0 : index;
+  index = index < 0 ? 0 : index;
+  index = index >= screens.length ? screens.length - 1 : index;
   current = index;
   selectSlide(screens[current]);
 };
