@@ -1,8 +1,5 @@
 'use strict';
 
-const RIGHT_ARROW = 39;
-const LEFT_ARROW = 37;
-
 const mainElement = document.querySelector(`#main`);
 
 const addScreenSwitchers = () => {
@@ -35,8 +32,12 @@ const selectSlide = (element) => {
   mainElement.appendChild(element.cloneNode(true));
 };
 
-const screens = Array.from(document.querySelectorAll(`template`)).
-map((it) => it.content);
+const templateIDs = [`intro`, `greeting`, `rules`, `game-1`, `game-2`, `game-3`, `stats`, `modal-error`, `modal-confirm`];
+const screens = [];
+
+templateIDs.forEach(function (it) {
+  screens.push(document.querySelector(`#` + it).content);
+});
 
 let current = 0;
 const select = (index) => {
@@ -61,11 +62,11 @@ const screenSwitchersHandler = () => {
 };
 
 document.addEventListener(`keydown`, (evt) => {
-  switch (evt.keyCode) {
-    case RIGHT_ARROW:
+  switch (evt.key) {
+    case `ArrowRight`:
       select(current + 1);
       break;
-    case LEFT_ARROW:
+    case `ArrowLeft`:
       select(current - 1);
       break;
   }
