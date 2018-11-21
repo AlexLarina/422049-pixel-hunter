@@ -32,7 +32,7 @@ const selectSlide = (element) => {
   mainElement.appendChild(element.cloneNode(true));
 };
 
-const templateIDs = [`intro`, `greeting`, `rules`, `game-1`, `game-2`, `game-3`, `stats`, `modal-error`, `modal-confirm`];
+const templateIDs = [`intro`, `greeting`, `rules`, `game-1`, `game-2`, `game-3`, `stats`];
 const screens = [];
 
 templateIDs.forEach(function (it) {
