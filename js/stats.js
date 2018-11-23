@@ -1,4 +1,4 @@
-import {changeScreen, getElementFromTemplate, backButtonHandler} from './util.js';
+import {changeScreen, getElementFromTemplate} from './util.js';
 import {greetingScreen} from "./greeting";
 
 const statsTemplate = `
@@ -116,4 +116,7 @@ const statsTemplate = `
 
 export const statsScreen = getElementFromTemplate(statsTemplate);
 
-backButtonHandler(statsScreen, greetingScreen);
+const backButton = statsScreen.querySelector(`.back`);
+backButton.addEventListener(`click`, () => {
+  changeScreen(greetingScreen);
+});

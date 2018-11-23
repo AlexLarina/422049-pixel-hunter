@@ -1,4 +1,4 @@
-import {changeScreen, getElementFromTemplate, backButtonHandler} from './util.js';
+import {changeScreen, getElementFromTemplate} from './util.js';
 import {greetingScreen} from "./greeting";
 import {thirdGameScreen} from "./game-3";
 
@@ -51,12 +51,15 @@ const secondGameTemplate = `
 
 export const secondGameScreen = getElementFromTemplate(secondGameTemplate);
 
-backButtonHandler(secondGameScreen, greetingScreen);
-
 const answers = secondGameScreen.querySelectorAll(`.game__answer input`);
 
 answers.forEach((it) => {
   it.addEventListener(`click`, () => {
     changeScreen(thirdGameScreen);
   });
+});
+
+const backButton = secondGameScreen.querySelector(`.back`);
+backButton.addEventListener(`click`, () => {
+  changeScreen(greetingScreen);
 });

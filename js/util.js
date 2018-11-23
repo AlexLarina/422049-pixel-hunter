@@ -11,10 +11,3 @@ export const changeScreen = (element) => {
   mainElement.appendChild(element);
 };
 
-
-export const backButtonHandler = (currentScreen, backScreen) => {
-  const backButton = currentScreen.querySelector(`.back`);
-  backButton.addEventListener(`click`, () => {
-    changeScreen(backScreen);
-  });
-};

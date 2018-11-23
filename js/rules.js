@@ -1,4 +1,4 @@
-import {changeScreen, getElementFromTemplate, backButtonHandler} from './util.js';
+import {changeScreen, getElementFromTemplate} from './util.js';
 import {greetingScreen} from "./greeting";
 import {firstGameScreen} from "./game-1";
 
@@ -33,8 +33,6 @@ const rulesTemplate = `
 
 export const rulesScreen = getElementFromTemplate(rulesTemplate);
 
-backButtonHandler(rulesScreen, greetingScreen);
-
 const rulesButton = rulesScreen.querySelector(`.rules__button`);
 const rulesInput = rulesScreen.querySelector(`.rules__input`);
 
@@ -53,3 +51,7 @@ rulesButton.addEventListener(`click`, () => {
   changeScreen(firstGameScreen);
 });
 
+const backButton = rulesScreen.querySelector(`.back`);
+backButton.addEventListener(`click`, () => {
+  changeScreen(greetingScreen);
+});
