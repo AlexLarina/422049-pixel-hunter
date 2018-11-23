@@ -1,6 +1,6 @@
-import {changeScreen, getElementFromTemplate} from './util.js';
-import {greetingScreen} from "./greeting";
-import {statsScreen} from "./stats";
+import {changeScreen, getElementFromTemplate} from './util';
+import {greetingScreen} from './greeting';
+import {statsScreen} from './stats';
 
 const thirdGameTemplate = `
 <header class="header">

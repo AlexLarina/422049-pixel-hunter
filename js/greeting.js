@@ -1,5 +1,5 @@
-import {changeScreen, getElementFromTemplate} from './util.js';
-import {rulesScreen} from "./rules";
+import {changeScreen, getElementFromTemplate} from './util';
+import {rulesScreen} from './rules';
 
 const greetingTemplate = `
 <section class="greeting central--blur">
