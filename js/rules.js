@@ -38,14 +38,7 @@ const rulesInput = rulesScreen.querySelector(`.rules__input`);
 const rulesForm = rulesScreen.querySelector(`.rules__form`);
 
 rulesInput.addEventListener(`input`, () => {
-  if (rulesInput.value.length !== 0) {
-    rulesButton.removeAttribute(`disabled`);
-  } else {
-    rulesButton.setAttribute(`disabled`, `disabled`);
-  }
-  // TODO: как заменить верхнее if-else на тернаный оператор, вылетаю с ошибкой неприсваивания
-  /* rulesInput.value.length !== 0 ? rulesButton.removeAttribute(`disabled`) :
-    rulesButton.setAttribute(`disabled`, `disabled`); */
+  rulesButton.toggleAttribute(`disabled`);
 });
 
 rulesButton.addEventListener(`click`, () => {

@@ -51,12 +51,15 @@ const secondGameTemplate = `
 
 const secondGameScreen = getElementFromTemplate(secondGameTemplate);
 
-const answers = secondGameScreen.querySelectorAll(`.game__answer input`);
+const gameForm = secondGameScreen.querySelector(`.game__content`);
 
-answers.forEach((it) => {
-  it.addEventListener(`click`, () => {
+
+gameForm.addEventListener(`change`, () => {
+  const answerData = new FormData(gameForm);
+  if (answerData.has(`question1`)) {
     changeScreen(thirdGameScreen);
-  });
+    gameForm.reset();
+  }
 });
 
 const backButton = secondGameScreen.querySelector(`.back`);

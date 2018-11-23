@@ -1,4 +1,4 @@
-export const getElementFromTemplate = (template) => {
+const getElementFromTemplate = (template) => {
   const wrapper = document.createElement(`section`);
   wrapper.innerHTML = template.trim();
   return wrapper;
@@ -6,17 +6,9 @@ export const getElementFromTemplate = (template) => {
 
 const mainElement = document.querySelector(`#main`);
 
-export const changeScreen = (element) => {
+const changeScreen = (element) => {
   mainElement.innerHTML = ``;
   mainElement.appendChild(element);
 };
 
-export const resetAnswers = (answers) => {
-  answers.forEach((it) => {
-    it.removeAttribute(`checked`);
-    /*if (it.checked) {
-      it.removeAttribute(`checked`);
-    }*/
-    // console.log(it.checked);
-  });
-};
+export {getElementFromTemplate, changeScreen};

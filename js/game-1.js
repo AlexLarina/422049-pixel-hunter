@@ -1,9 +1,6 @@
-import {changeScreen, getElementFromTemplate, resetAnswers} from './util.js';
+import {changeScreen, getElementFromTemplate} from './util.js';
 import {greetingScreen} from "./greeting";
 import {secondGameScreen} from "./game-2";
-
-let checkedInputs = 0;
-const requiredAnswers = 2;
 
 const firstGameTemplate = `
 <header class="header">
@@ -66,19 +63,14 @@ const firstGameTemplate = `
 
 const firstGameScreen = getElementFromTemplate(firstGameTemplate);
 
-const answers = firstGameScreen.querySelectorAll(`.game__answer input`);
-
-answers.forEach((it) => {
-  it.addEventListener(`click`, () => {
-    checkedInputs++;
-    if (checkedInputs === requiredAnswers) {
-      changeScreen(secondGameScreen);
-      resetAnswers(answers);
-    }
-  });
+const gameForm = firstGameScreen.querySelector(`.game__content`);
+gameForm.addEventListener(`change`, () => {
+  const answerData = new FormData(gameForm);
+  if (answerData.has(`question1`) && answerData.has(`question2`)) {
+    changeScreen(secondGameScreen);
+    gameForm.reset();
+  }
 });
-
-//resetAnswers(answers);
 
 const backButton = firstGameScreen.querySelector(`.back`);
 backButton.addEventListener(`click`, () => {
