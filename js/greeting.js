@@ -23,10 +23,13 @@ const greetingTemplate = `
     </button>
   </section>`;
 
-export const greetingScreen = getElementFromTemplate(greetingTemplate);
+const greetingScreen = getElementFromTemplate(greetingTemplate);
 
 const greetingButton = greetingScreen.querySelector(`.greeting__continue`);
 
 greetingButton.addEventListener(`click`, () => {
   changeScreen(rulesScreen);
 });
+
+export {greetingScreen};
+

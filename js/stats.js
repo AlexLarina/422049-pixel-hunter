@@ -114,9 +114,11 @@ const statsTemplate = `
     </table>
   </section>`;
 
-export const statsScreen = getElementFromTemplate(statsTemplate);
+const statsScreen = getElementFromTemplate(statsTemplate);
 
 const backButton = statsScreen.querySelector(`.back`);
 backButton.addEventListener(`click`, () => {
   changeScreen(greetingScreen);
 });
+
+export {statsScreen};

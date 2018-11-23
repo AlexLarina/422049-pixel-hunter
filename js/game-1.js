@@ -1,4 +1,4 @@
-import {changeScreen, getElementFromTemplate} from './util.js';
+import {changeScreen, getElementFromTemplate, resetAnswers} from './util.js';
 import {greetingScreen} from "./greeting";
 import {secondGameScreen} from "./game-2";
 
@@ -64,7 +64,7 @@ const firstGameTemplate = `
   </section>
 `;
 
-export const firstGameScreen = getElementFromTemplate(firstGameTemplate);
+const firstGameScreen = getElementFromTemplate(firstGameTemplate);
 
 const answers = firstGameScreen.querySelectorAll(`.game__answer input`);
 
@@ -73,11 +73,16 @@ answers.forEach((it) => {
     checkedInputs++;
     if (checkedInputs === requiredAnswers) {
       changeScreen(secondGameScreen);
+      resetAnswers(answers);
     }
   });
 });
+
+//resetAnswers(answers);
 
 const backButton = firstGameScreen.querySelector(`.back`);
 backButton.addEventListener(`click`, () => {
   changeScreen(greetingScreen);
 });
+
+export {firstGameScreen};

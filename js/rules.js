@@ -35,6 +35,7 @@ export const rulesScreen = getElementFromTemplate(rulesTemplate);
 
 const rulesButton = rulesScreen.querySelector(`.rules__button`);
 const rulesInput = rulesScreen.querySelector(`.rules__input`);
+const rulesForm = rulesScreen.querySelector(`.rules__form`);
 
 rulesInput.addEventListener(`input`, () => {
   if (rulesInput.value.length !== 0) {
@@ -49,6 +50,8 @@ rulesInput.addEventListener(`input`, () => {
 
 rulesButton.addEventListener(`click`, () => {
   changeScreen(firstGameScreen);
+  rulesForm.reset();
+  rulesButton.setAttribute(`disabled`, `disabled`);
 });
 
 const backButton = rulesScreen.querySelector(`.back`);

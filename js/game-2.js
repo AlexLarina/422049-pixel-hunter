@@ -49,7 +49,7 @@ const secondGameTemplate = `
     </ul>
   </section>`;
 
-export const secondGameScreen = getElementFromTemplate(secondGameTemplate);
+const secondGameScreen = getElementFromTemplate(secondGameTemplate);
 
 const answers = secondGameScreen.querySelectorAll(`.game__answer input`);
 
@@ -63,3 +63,5 @@ const backButton = secondGameScreen.querySelector(`.back`);
 backButton.addEventListener(`click`, () => {
   changeScreen(greetingScreen);
 });
+
+export {secondGameScreen};

@@ -11,3 +11,12 @@ export const changeScreen = (element) => {
   mainElement.appendChild(element);
 };
 
+export const resetAnswers = (answers) => {
+  answers.forEach((it) => {
+    it.removeAttribute(`checked`);
+    /*if (it.checked) {
+      it.removeAttribute(`checked`);
+    }*/
+    // console.log(it.checked);
+  });
+};

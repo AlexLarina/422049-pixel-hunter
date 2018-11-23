@@ -47,7 +47,7 @@ const thirdGameTemplate = `
     </ul>
   </section>`;
 
-export const thirdGameScreen = getElementFromTemplate(thirdGameTemplate);
+const thirdGameScreen = getElementFromTemplate(thirdGameTemplate);
 
 const answerForm = thirdGameScreen.querySelector(`.game__content`);
 
@@ -59,3 +59,5 @@ const backButton = thirdGameScreen.querySelector(`.back`);
 backButton.addEventListener(`click`, () => {
   changeScreen(greetingScreen);
 });
+
+export {thirdGameScreen};
