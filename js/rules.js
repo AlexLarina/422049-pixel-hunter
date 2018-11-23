@@ -1,6 +1,6 @@
-import {changeScreen, getElementFromTemplate} from './util.js';
-import {greetingScreen} from "./greeting";
-import {firstGameScreen} from "./game-1";
+import { firstGameScreen } from "./game-1";
+import { greetingScreen } from "./greeting";
+import { changeScreen, getElementFromTemplate } from "./util.js";
 
 const rulesTemplate = `
 <header class="header">
@@ -37,8 +37,8 @@ const rulesButton = rulesScreen.querySelector(`.rules__button`);
 const rulesInput = rulesScreen.querySelector(`.rules__input`);
 const rulesForm = rulesScreen.querySelector(`.rules__form`);
 
-rulesInput.addEventListener(`input`, () => {
-  rulesButton.toggleAttribute(`disabled`);
+rulesInput.addEventListener(`input`, (event) => {
+  rulesButton.toggleAttribute(`disabled`, !event.target.value);
 });
 
 rulesButton.addEventListener(`click`, () => {
