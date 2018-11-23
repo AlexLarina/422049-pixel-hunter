@@ -1,6 +1,6 @@
-import {changeScreen, getElementFromTemplate} from './util.js';
-import {greetingScreen} from "./greeting";
-import {firstGameScreen} from "./game-1";
+import {changeScreen, getElementFromTemplate} from './util';
+import {greetingScreen} from './greeting';
+import {firstGameScreen} from './game-1';
 
 const rulesTemplate = `
 <header class="header">
