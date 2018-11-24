@@ -1,4 +1,4 @@
-import {assert} from 'chai';
+/* import {assert} from 'chai';
 
 describe(`Array`, () => {
   describe(`#indexOf()`, () => {
@@ -6,5 +6,5 @@ describe(`Array`, () => {
       assert.equal(-1, [1, 2, 3].indexOf(4));
     });
   });
-});
+}); */
 
