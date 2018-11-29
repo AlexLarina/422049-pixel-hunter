@@ -1,5 +1,5 @@
 import {changeScreen, getElementFromTemplate} from './util';
-import {headerTemplate} from "./header";
+import {getHeader} from "./header";
 import {greetingScreen} from './greeting';
 import {secondGameScreen} from './game-2';
 import {initialState, srcData} from "./data";
@@ -7,6 +7,7 @@ import {gameQuestionTemplateWithAnswer} from "./game_question";
 import {currentStatsTemplate} from "./current_stats";
 
 const firstGameTemplate = `
+  ${getHeader(initialState)}
   <section class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     <form class="game__content">
@@ -57,7 +58,7 @@ const firstGameTemplate = `
   </section>
 `;
 
-const firstGameScreen = getElementFromTemplate(headerTemplate(initialState) + firstGameTemplate);
+const firstGameScreen = getElementFromTemplate(firstGameTemplate);
 
 const gameForm = firstGameScreen.querySelector(`.game__content`);
 gameForm.addEventListener(`change`, () => {
@@ -69,8 +70,8 @@ gameForm.addEventListener(`change`, () => {
 });
 
 const backButton = firstGameScreen.querySelector(`.back`);
-backButton.addEventListener(`click`, () => {
+/* backButton.addEventListener(`click`, () => {
   changeScreen(greetingScreen);
-});
+}); */
 
 export {firstGameScreen};

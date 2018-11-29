@@ -1,6 +1,7 @@
-import {initialState} from "./data";
+import {getElementFromTemplate} from "./util";
 
-const headerTemplate = (state) => `<header class="header">
+const getHeader = (state) => {
+  const headerTemplate = `<header class="header">
     <button class="back">
       <span class="visually-hidden">Вернуться к началу</span>
       <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
@@ -13,15 +14,18 @@ const headerTemplate = (state) => `<header class="header">
     <div class="game__timer">${state.time}</div>
     <div class="game__lives">
       ${new Array(3 - state.lives)
-          .fill(`<img src="img/heart__empty.svg" class="game__heart" alt=" Missed Life" width="31" height="27">`)
-          .join(``)}  
+        .fill(`<img src="img/heart__empty.svg" class="game__heart" alt=" Missed Life" width="31" height="27">`)
+        .join(``)}  
       ${new Array(state.lives)
-          .fill(`<img src="img/heart__full.svg" class="game__heart" alt="Life" width="31" height="27">`)
-          .join(``)}
+        .fill(`<img src="img/heart__full.svg" class="game__heart" alt="Life" width="31" height="27">`)
+        .join(``)}
      <!-- <img src="img/heart__empty.svg" class="game__heart" alt=" Missed Life" width="31" height="27">
       <img src="img/heart__full.svg" class="game__heart" alt="Life" width="31" height="27">
       <img src="img/heart__full.svg" class="game__heart" alt="Life" width="31" height="27">-->
     </div>
   </header>`;
 
-export {headerTemplate};
+  return getElementFromTemplate(headerTemplate);
+};
+
+export {getHeader};

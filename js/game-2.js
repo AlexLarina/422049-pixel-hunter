@@ -1,7 +1,6 @@
 import {changeScreen, getElementFromTemplate} from './util.js';
 import {greetingScreen} from "./greeting";
 import {thirdGameScreen} from "./game-3";
-import {headerTemplate} from "./header";
 import {initialState, srcData} from "./data";
 import {gameQuestionTemplateWithAnswer} from "./game_question";
 import {currentStatsTemplate} from "./current_stats";
@@ -42,7 +41,7 @@ const secondGameTemplate = `
     </ul>
   </section>`;
 
-const secondGameScreen = getElementFromTemplate(headerTemplate(initialState) + secondGameTemplate);
+const secondGameScreen = getElementFromTemplate(secondGameTemplate);
 
 const gameForm = secondGameScreen.querySelector(`.game__content`);
 
@@ -56,8 +55,8 @@ gameForm.addEventListener(`change`, () => {
 });
 
 const backButton = secondGameScreen.querySelector(`.back`);
-backButton.addEventListener(`click`, () => {
+/* backButton.addEventListener(`click`, () => {
   changeScreen(greetingScreen);
-});
+}); */
 
 export {secondGameScreen};
