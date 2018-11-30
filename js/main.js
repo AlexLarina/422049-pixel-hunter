@@ -3,5 +3,4 @@ import {introScreen} from './intro';
 
 changeScreen(introScreen);
 
-// it works!
-
+// test commit to make sure it works
