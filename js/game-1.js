@@ -6,7 +6,7 @@ import {initialState, srcData} from "./data";
 import {getQuestionWithAnswer} from "./game_question";
 import {getCurrentStats} from "./current_stats";
 
-const questionObject = {
+const questionObjectTwoOfTwo = {
     "type": "two-of-two",
     "question": "Угадайте для каждого изображения фото или рисунок?",
     "answers": [
@@ -70,6 +70,7 @@ const twoOfTwoGame = (questionObj) => {
   gameForm.addEventListener(`change`, () => {
     const answerData = new FormData(gameForm);
     if (answerData.has(`question1`) && answerData.has(`question2`)) {
+      console.log(`answered!`);
       changeScreen(secondGameScreen);
       gameForm.reset();
     }
@@ -78,4 +79,5 @@ const twoOfTwoGame = (questionObj) => {
   return firstGameScreen;
 }
 
-export {twoOfTwoGame, questionObject};
+
+export {twoOfTwoGame, questionObjectTwoOfTwo};
