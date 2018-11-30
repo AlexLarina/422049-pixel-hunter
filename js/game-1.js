@@ -1,12 +1,12 @@
 import {changeScreen, getElementFromTemplate} from './util';
 import {getHeader} from "./header";
 import {greetingScreen} from './greeting';
-import {secondGameScreen} from './game-2';
+import {TinderLikeGame, dataTinderLike} from './game-2';
 import {initialState, srcData} from "./data";
 import {getQuestionWithAnswer} from "./game_question";
 import {getCurrentStats} from "./current_stats";
 
-const questionObjectTwoOfTwo = {
+const dataTwoOfTwo = {
     "type": "two-of-two",
     "question": "Угадайте для каждого изображения фото или рисунок?",
     "answers": [
@@ -35,8 +35,8 @@ const twoOfTwoGame = (questionObj) => {
     <section class="game">
       <p class="game__task">${questionObj.question}</p>
       <form class="game__content">
-      ${getQuestionWithAnswer(questionObj.answers[0].image.url, questionObj.answers[0].type)}
-      ${getQuestionWithAnswer(questionObj.answers[1].image.url, questionObj.answers[1].type)}
+      ${getQuestionWithAnswer(questionObj.answers[0].image.url, 1)}
+      ${getQuestionWithAnswer(questionObj.answers[1].image.url, 2)}
         <!--<div class="game__option">
           <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
           <label class="game__answer game__answer--photo">
@@ -71,13 +71,19 @@ const twoOfTwoGame = (questionObj) => {
     const answerData = new FormData(gameForm);
     if (answerData.has(`question1`) && answerData.has(`question2`)) {
       console.log(`answered!`);
-      changeScreen(secondGameScreen);
+      changeScreen(TinderLikeGame(dataTinderLike));
       gameForm.reset();
     }
+  });
+
+  const backButton = firstGameScreen.querySelector(`.back`);
+  backButton.addEventListener(`click`, () => {
+    changeScreen(greetingScreen);
   });
 
   return firstGameScreen;
 }
 
+// twoOfTwoGame(questionObjectTwoOfTwo);
 
-export {twoOfTwoGame, questionObjectTwoOfTwo};
+export {twoOfTwoGame, dataTwoOfTwo};

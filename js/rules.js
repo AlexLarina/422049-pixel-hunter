@@ -1,6 +1,6 @@
 import {changeScreen, getElementFromTemplate} from './util';
 import {greetingScreen} from './greeting';
-import {twoOfTwoGame, questionObjectTwoOfTwo} from './game-1';
+import {twoOfTwoGame, dataTwoOfTwo} from './game-1';
 
 const rulesTemplate = `
 <header class="header">
@@ -42,7 +42,7 @@ rulesInput.addEventListener(`input`, (event) => {
 });
 
 rulesButton.addEventListener(`click`, () => {
-  changeScreen(twoOfTwoGame(questionObjectTwoOfTwo));
+  changeScreen(twoOfTwoGame(dataTwoOfTwo));
   rulesForm.reset();
   rulesButton.setAttribute(`disabled`, `disabled`);
 });
