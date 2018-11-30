@@ -3,9 +3,12 @@ import {greetingScreen} from './greeting';
 import {statsScreen} from './stats';
 import {initialState, srcData} from "./data";
 import {gameQuestionTemplate} from "./game_question";
-import {currentStatsTemplate} from "./current_stats";
+import {getHeader} from "./header";
+import {getCurrentStats} from "./current_stats";
+
 
 const thirdGameTemplate = `
+  ${getHeader(initialState)}
   <section class="game">
     <p class="game__task">Найдите рисунок среди изображений</p>
     <form class="game__content  game__content--triple">
@@ -29,9 +32,6 @@ const thirdGameTemplate = `
       </div>-->
     </form>
     <ul class="stats">
-    ${new Array(10)
-      .fill(currentStatsTemplate)
-      .join(``)}
       <!--<li class="stats__result stats__result--wrong"></li>
       <li class="stats__result stats__result--slow"></li>
       <li class="stats__result stats__result--fast"></li>

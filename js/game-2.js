@@ -2,16 +2,15 @@ import {changeScreen, getElementFromTemplate} from './util.js';
 import {greetingScreen} from "./greeting";
 import {thirdGameScreen} from "./game-3";
 import {initialState, srcData} from "./data";
-import {gameQuestionTemplateWithAnswer} from "./game_question";
-import {currentStatsTemplate} from "./current_stats";
+import {getHeader} from "./header";
+import {getCurrentStats} from "./current_stats";
+
 
 const secondGameTemplate = `
+  ${getHeader(initialState)}
   <section class="game">
     <p class="game__task">Угадай, фото или рисунок?</p>
     <form class="game__content  game__content--wide">
-    ${new Array(1)
-      .fill(gameQuestionTemplateWithAnswer(srcData.paintings[1], `question1`))
-      .join(``)}
       <!--<div class="game__option">
         <img src="http://placehold.it/705x455" alt="Option 1" width="705" height="455">
         <label class="game__answer  game__answer--photo">
@@ -24,21 +23,7 @@ const secondGameTemplate = `
         </label>
       </div>-->
     </form>
-    <ul class="stats">
-    ${new Array(10)
-      .fill(currentStatsTemplate)
-      .join(``)}
-      <!--<li class="stats__result stats__result--wrong"></li>
-      <li class="stats__result stats__result--slow"></li>
-      <li class="stats__result stats__result--fast"></li>
-      <li class="stats__result stats__result--correct"></li>
-      <li class="stats__result stats__result--wrong"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--slow"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--fast"></li>
-      <li class="stats__result stats__result--unknown"></li>-->
-    </ul>
+    ${getCurrentStats()}
   </section>`;
 
 const secondGameScreen = getElementFromTemplate(secondGameTemplate);
