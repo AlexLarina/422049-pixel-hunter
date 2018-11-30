@@ -11,4 +11,4 @@ const changeScreen = (element) => {
   mainElement.appendChild(element);
 };
 
-export {getElementFromTemplate, changeScreen};
+export {getElementFromTemplate, changeScreen, mainElement};
