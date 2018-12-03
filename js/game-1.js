@@ -1,33 +1,11 @@
 import {changeScreen, getElementFromTemplate} from './util';
 import {getHeader} from "./header";
 import {greetingScreen} from './greeting';
-import {TinderLikeGame, dataTinderLike} from './game-2';
+import {TinderLikeGame} from './game-2';
 import {initialState, srcData} from "./data";
 import {getQuestionWithAnswer} from "./game_question";
 import {getCurrentStats} from "./current_stats";
-
-const dataTwoOfTwo = {
-    "type": "two-of-two",
-    "question": "Угадайте для каждого изображения фото или рисунок?",
-    "answers": [
-      {
-        "image": {
-          "url": "http://placehold.it/468x458",
-          "width": 468,
-          "height": 458
-        },
-        "type": "photo"
-      },
-      {
-        "image": {
-          "url": "http://placehold.it/468x458",
-          "width": 468,
-          "height": 458
-        },
-        "type": "painting"
-      }
-    ]
-  };
+import {dataTinderLike} from "./data";
 
 const twoOfTwoGame = (questionObj) => {
   const firstGameTemplate = `
@@ -37,28 +15,6 @@ const twoOfTwoGame = (questionObj) => {
       <form class="game__content">
       ${getQuestionWithAnswer(questionObj.answers[0].image.url, 1)}
       ${getQuestionWithAnswer(questionObj.answers[1].image.url, 2)}
-        <!--<div class="game__option">
-          <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
-          <label class="game__answer game__answer--photo">
-            <input class="visually-hidden" name="question1" type="radio" value="photo">
-            <span>Фото</span>
-          </label>
-          <label class="game__answer game__answer--paint">
-            <input class="visually-hidden" name="question1" type="radio" value="paint">
-            <span>Рисунок</span>
-          </label>
-        </div>
-        <div class="game__option">
-          <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
-          <label class="game__answer  game__answer--photo">
-            <input class="visually-hidden" name="question2" type="radio" value="photo">
-            <span>Фото</span>
-          </label>
-          <label class="game__answer  game__answer--paint">
-            <input class="visually-hidden" name="question2" type="radio" value="paint">
-            <span>Рисунок</span>
-          </label>
-        </div>-->
       </form>
      ${getCurrentStats()}
     </section>
@@ -83,7 +39,5 @@ const twoOfTwoGame = (questionObj) => {
 
   return firstGameScreen;
 }
-
-// twoOfTwoGame(questionObjectTwoOfTwo);
 
 export {twoOfTwoGame, dataTwoOfTwo};

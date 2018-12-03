@@ -6,37 +6,6 @@ import {gameQuestionTemplate} from "./game_question";
 import {getHeader} from "./header";
 import {getCurrentStats} from "./current_stats";
 
-const dataOneOfThree = {
-    "type": "one-of-three",
-    "question": "Найдите рисунок среди изображений",
-    "answers": [
-      {
-        "image": {
-          "url": "http://placehold.it/304x455",
-          "width": 304,
-          "height": 455
-        },
-        "type": "photo"
-      },
-      {
-        "image": {
-          "url": "http://placehold.it/304x455",
-          "width": 304,
-          "height": 455
-        },
-        "type": "painting"
-      },
-      {
-        "image": {
-          "url": "http://placehold.it/304x455",
-          "width": 304,
-          "height": 455
-        },
-        "type": "photo"
-      }
-    ]
-  };
-
 const OneOfThreeGame = (questionObj) => {
   const thirdGameTemplate = `
     ${getHeader(initialState)}
@@ -52,28 +21,8 @@ const OneOfThreeGame = (questionObj) => {
       ${new Array(1)
         .fill(gameQuestionTemplate(questionObj.answers[2].image.url, 3))
         .join(``)}
-        <!--<div class="game__option">
-          <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
-        </div>
-        <div class="game__option  game__option--selected">
-          <img src="http://placehold.it/304x455" alt="Option 2" width="304" height="455">
-        </div>
-        <div class="game__option">
-          <img src="http://placehold.it/304x455" alt="Option 3" width="304" height="455">
-        </div>-->
       </form>
-      <ul class="stats">
-        <!--<li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--correct"></li>
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--unknown"></li>-->
-      </ul>
+      ${getCurrentStats()}
     </section>`;
 
   const thirdGameScreen = getElementFromTemplate(thirdGameTemplate);

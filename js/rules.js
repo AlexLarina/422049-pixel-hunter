@@ -1,6 +1,7 @@
 import {changeScreen, getElementFromTemplate} from './util';
 import {greetingScreen} from './greeting';
-import {twoOfTwoGame, dataTwoOfTwo} from './game-1';
+import {twoOfTwoGame} from './game-1';
+import {dataTwoOfTwo} from './data';
 
 const rulesTemplate = `
 <header class="header">
