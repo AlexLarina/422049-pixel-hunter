@@ -1,11 +1,11 @@
-import {changeScreen, getElementFromTemplate} from './util.js';
+import {changeScreen, getElementFromTemplate, getLevel} from './util.js';
 import {greetingScreen} from "./greeting";
 import {OneOfThreeGame} from "./game-3";
 import {initialState, srcData} from "./data";
 import {getHeader} from "./header";
 import {getCurrentStats} from "./current_stats";
 import {getQuestionWithAnswer} from "./game_question";
-import {dataOneOfThree} from "./data";
+import {gameDataArray, dataOneOfThree} from "./data";
 
 const TinderLikeGame = (questionObj) => {
   const secondGameTemplate = `
@@ -25,7 +25,8 @@ const TinderLikeGame = (questionObj) => {
   gameForm.addEventListener(`change`, () => {
     const answerData = new FormData(gameForm);
     if (answerData.has(`question1`)) {
-      changeScreen(OneOfThreeGame(dataOneOfThree));
+      getLevel(gameDataArray);
+      // changeScreen(OneOfThreeGame(dataOneOfThree));
       gameForm.reset();
     }
   });
