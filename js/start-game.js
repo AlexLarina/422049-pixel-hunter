@@ -1,11 +1,12 @@
-import {INITIAL_STATE, gameDataArray} from './data';
-import { getHeader } from "./header";
-import { changeLevel, canContinue } from './game-state';
-import { renderLevel } from "./level";
+import {INITIAL_STATE, gameDataArray} from "./data";
+import {getHeader} from "./header";
+import {changeLevel, canContinue} from "./game_state";
+import {renderLevel} from "./game";
+import {changeScreen} from "./util";
 
 let game;
 
-const startGame = {
+const startGame = () => {
   game = Object.assign({}, INITIAL_STATE);
 
   const getLevel = () => gameDataArray[game.level];
@@ -24,7 +25,7 @@ const startGame = {
 
     const gameForm = levelContainer.querySelector(`.game__content`);
     gameForm.addEventListener(`click`, () => {
-      if(canContinue(game)) {
+      if (canContinue(game)) {
         game = changeLevel(game);
       }
     });
@@ -35,4 +36,4 @@ const startGame = {
 
 };
 
-export {startGame}
+export {startGame};
