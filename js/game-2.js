@@ -1,11 +1,11 @@
-import {changeScreen, getElementFromTemplate, getLevel} from './util.js';
+import {changeScreen, getElementFromTemplate} from './util.js';
 import {greetingScreen} from "./greeting";
-import {OneOfThreeGame} from "./game-3";
-import {initialState, srcData} from "./data";
+import {initialState} from "./data";
 import {getHeader} from "./header";
 import {getCurrentStats} from "./current_stats";
 import {getQuestionWithAnswer} from "./game_question";
-import {gameDataArray, dataOneOfThree} from "./data";
+import {gameDataArray} from "./data";
+import {getLevel} from "./game";
 
 const TinderLikeGame = (questionObj) => {
   const secondGameTemplate = `
@@ -40,4 +40,4 @@ const TinderLikeGame = (questionObj) => {
 };
 
 
-export {TinderLikeGame, dataTinderLike};
+export {TinderLikeGame};

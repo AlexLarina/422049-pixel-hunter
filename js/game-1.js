@@ -1,11 +1,11 @@
-import {changeScreen, getElementFromTemplate, getLevel} from './util';
+import {changeScreen, getElementFromTemplate} from './util';
 import {getHeader} from "./header";
 import {greetingScreen} from './greeting';
-import {TinderLikeGame} from './game-2';
-import {initialState, srcData} from "./data";
+import {initialState} from "./data";
 import {getQuestionWithAnswer} from "./game_question";
 import {getCurrentStats} from "./current_stats";
-import {gameDataArray, dataTinderLike} from "./data";
+import {gameDataArray} from "./data";
+import {getLevel} from "./game";
 
 const twoOfTwoGame = (questionObj) => {
   const firstGameTemplate = `
@@ -41,4 +41,4 @@ const twoOfTwoGame = (questionObj) => {
   return firstGameScreen;
 }
 
-export {twoOfTwoGame, dataTwoOfTwo};
+export {twoOfTwoGame};

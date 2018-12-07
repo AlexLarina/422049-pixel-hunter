@@ -1,5 +1,3 @@
-import {getElementFromTemplate} from "./util";
-
 const getHeader = (state) => {
   const headerTemplate = `<header class="header">
     <button class="back">

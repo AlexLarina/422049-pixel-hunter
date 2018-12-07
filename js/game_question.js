@@ -1,4 +1,3 @@
-
 const getQuestionWithAnswer = (src, number) =>{
   const templateWithAnswer = `
   <div class="game__option">

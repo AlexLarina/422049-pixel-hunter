@@ -1,10 +1,10 @@
-import {changeScreen, getElementFromTemplate, getLevel} from './util';
+import {changeScreen, getElementFromTemplate} from './util';
 import {greetingScreen} from './greeting';
-import {getGameStats} from './stats';
-import {initialState, srcData, gameDataArray} from "./data";
+import {initialState, gameDataArray} from "./data";
 import {gameQuestionTemplate} from "./game_question";
 import {getHeader} from "./header";
 import {getCurrentStats} from "./current_stats";
+import {getLevel} from "./game";
 
 const OneOfThreeGame = (questionObj) => {
   const thirdGameTemplate = `
@@ -42,5 +42,4 @@ const OneOfThreeGame = (questionObj) => {
   return thirdGameScreen;
 }
 
-
-export {OneOfThreeGame, dataOneOfThree};
+export {OneOfThreeGame};
