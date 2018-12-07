@@ -14,6 +14,8 @@ const startGame = {
 
 
   const updateGame = (state) => {
+    const level = getLevel();
+
     const header = getHeader(state);
     const levelScreen = renderLevel(state, level);
 
@@ -26,10 +28,11 @@ const startGame = {
         game = changeLevel(game);
       }
     });
-  }
+  };
 
   updateGame(game);
   changeScreen(levelContainer);
-}
+
+};
 
 export {startGame}

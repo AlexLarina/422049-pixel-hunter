@@ -26,7 +26,7 @@ const twoOfTwoGame = (questionObj) => {
   gameForm.addEventListener(`change`, () => {
     const answerData = new FormData(gameForm);
     if (answerData.has(`question1`) && answerData.has(`question2`)) {
-      console.log(`answered!`);
+      // console.log(`answered!`);
       getLevel(gameDataArray);
       // changeScreen(TinderLikeGame(dataTinderLike));
       gameForm.reset();
@@ -39,6 +39,6 @@ const twoOfTwoGame = (questionObj) => {
   });
 
   return firstGameScreen;
-}
+};
 
 export {twoOfTwoGame};

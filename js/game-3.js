@@ -35,11 +35,11 @@ const OneOfThreeGame = (questionObj) => {
   });
 
   const backButton = thirdGameScreen.querySelector(`.back`);
-   backButton.addEventListener(`click`, () => {
+  backButton.addEventListener(`click`, () => {
     changeScreen(greetingScreen);
   });
 
   return thirdGameScreen;
-}
+};
 
 export {OneOfThreeGame};

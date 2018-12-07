@@ -13,7 +13,7 @@ const getQuestionWithAnswer = (src, number) =>{
         </div>`;
 
   return templateWithAnswer;
-}
+};
 
 const gameQuestionTemplate = (src, option) => `
 <div class="game__option">

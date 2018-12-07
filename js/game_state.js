@@ -9,7 +9,7 @@ const changeLevel = (game, level) => {
 
   level++;
   return Object.assign({}, game, {
-    level;
+    level
   });
 };
 
@@ -27,4 +27,4 @@ const die = (game) => {
   });
 };
 
-export {changeLevel, canContinue, die}
+export {changeLevel, canContinue, die};

@@ -24,7 +24,7 @@ const getHeader = (state) => {
   </header>`;
 
   return headerTemplate;
-  //return getElementFromTemplate(headerTemplate);
+  // return getElementFromTemplate(headerTemplate);
 };
 
 export {getHeader};

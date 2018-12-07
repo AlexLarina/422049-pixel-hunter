@@ -1,6 +1,3 @@
-const questionStatuses = [`stats__result--wrong`, `stats__result--correct`,
-  `stats__result--fast`, `stats__result--slow`, `stats__result--unknown`];
-
 const getCurrentStats = () => {
 
   const currentStatsTemplate = `
@@ -11,6 +8,6 @@ const getCurrentStats = () => {
   </ul>`;
   return currentStatsTemplate;
 
-}
+};
 
 export {getCurrentStats};
