@@ -22,11 +22,11 @@ import {getCurrentStats} from "./current_stats";
 }; */
 
 const getLevelGameForm = (level) => {
-  const formTemplate = ``;
+  let formTemplate = ``;
   switch (level.type) {
     case `two-of-two`:
       formTemplate = `<form class="game__content">
-      ${[...level.answers].map((i, answer) => `
+      ${[...level.answers].map((answer, i) => `
         <div class="game__option">
           <img src="${answer.image.url}" alt="Option ${i + 1}}" width="${answer.image.width}" height="${answer.image.height}">
           <label class="game__answer game__answer--photo">

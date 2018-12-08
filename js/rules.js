@@ -41,11 +41,16 @@ rulesInput.addEventListener(`input`, (event) => {
   rulesButton.toggleAttribute(`disabled`, !event.target.value);
 });
 
-rulesButton.addEventListener(`click`, () => {
+/* rulesButton.addEventListener(`click`, () => {
   // changeScreen(twoOfTwoGame(dataTwoOfTwo)); ///почему у тебя жестко захардкожен первый экран?
   startGame();
   rulesForm.reset();
   rulesButton.setAttribute(`disabled`, `disabled`);
+}); */
+
+rulesForm.addEventListener(`submit`, (event) => {
+  event.preventDefault();
+  startGame();
 });
 
 const backButton = rulesScreen.querySelector(`.back`);
