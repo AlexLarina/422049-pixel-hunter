@@ -87,4 +87,18 @@ const renderLevel = (state, level) => {
   return screen;
 };
 
-export {renderLevel, chooseGame};
+const saveAnswer = (state, level, evt) => {
+  const answerObject = {
+    src: ``
+  };
+  if (level.type === `one-of-three`) {
+    answerObject.src = evt.target.src;
+  } else {
+    const option = evt.target.parent.parent;
+    answerObject.src = option.querySelector(`img`).src;
+  }
+
+  state.answers.push(answerObject);
+};
+
+export {renderLevel, chooseGame, saveAnswer};
