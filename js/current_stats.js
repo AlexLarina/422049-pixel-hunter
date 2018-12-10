@@ -1,5 +1,4 @@
 const getCurrentStats = () => {
-
   const currentStatsTemplate = `
   <ul class="stats">
     ${new Array(10)

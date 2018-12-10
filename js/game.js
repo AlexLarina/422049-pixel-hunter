@@ -1,25 +1,27 @@
 import {getElementFromTemplate} from "./util";
 import {getCurrentStats} from "./current_stats";
+import {twoOfTwoGame} from "./game-TwoOfTwo";
+import {tinderLikeGame} from "./game-TinderLike";
+import {oneOfThreeGame} from "./game-OneOfThree";
+import {getRulesScreen} from "./rules";
 
-/* const getLevel = (questions) => {
-  questions.forEach(function (it) {
-    switch (it.type) {
-      case `two-of-two`:
-        changeScreen(twoOfTwoGame(it));
-        break;
-      case `tinder-like`:
-        changeScreen(TinderLikeGame(it));
-        break;
-      case `one-of-three`:
-        changeScreen(OneOfThreeGame(it));
-        break;
-      default:
-        changeScreen(rulesScreen);
-    }
-  });
-
-  changeScreen(getGameStats);
-}; */
+const chooseGame = (level) => {
+  let gameScreen;
+  switch (level.type) {
+    case `two-of-two`:
+      gameScreen = twoOfTwoGame(level);
+      break;
+    case `tinder-like`:
+      gameScreen = tinderLikeGame(level);
+      break;
+    case `one-of-three`:
+      gameScreen = oneOfThreeGame(level);
+      break;
+    default:
+      gameScreen = getRulesScreen();
+  }
+  return gameScreen;
+};
 
 const getLevelGameForm = (level) => {
   let formTemplate = ``;
@@ -85,4 +87,4 @@ const renderLevel = (state, level) => {
   return screen;
 };
 
-export {renderLevel};
+export {renderLevel, chooseGame};

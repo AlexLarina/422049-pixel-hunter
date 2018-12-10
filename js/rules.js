@@ -1,9 +1,10 @@
 import {changeScreen, getElementFromTemplate} from './util';
-import {greetingScreen} from './greeting';
+import {getGreetingScreen} from './greeting';
 import {startGame} from './start-game';
 
-const rulesTemplate = `
-<header class="header">
+const getRulesScreen = () => {
+  const rulesTemplate = `
+  <header class="header">
     <button class="back">
       <span class="visually-hidden">Вернуться к началу</span>
       <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
@@ -31,29 +32,34 @@ const rulesTemplate = `
     </form>
   </section>`;
 
-export const rulesScreen = getElementFromTemplate(rulesTemplate);
+  const rulesScreen = getElementFromTemplate(rulesTemplate);
 
-const rulesButton = rulesScreen.querySelector(`.rules__button`);
-const rulesInput = rulesScreen.querySelector(`.rules__input`);
-const rulesForm = rulesScreen.querySelector(`.rules__form`);
+  const rulesButton = rulesScreen.querySelector(`.rules__button`);
+  const rulesInput = rulesScreen.querySelector(`.rules__input`);
+  const rulesForm = rulesScreen.querySelector(`.rules__form`);
 
-rulesInput.addEventListener(`input`, (event) => {
-  rulesButton.toggleAttribute(`disabled`, !event.target.value);
-});
+  rulesInput.addEventListener(`input`, (event) => {
+    rulesButton.toggleAttribute(`disabled`, !event.target.value);
+  });
 
-/* rulesButton.addEventListener(`click`, () => {
-  // changeScreen(twoOfTwoGame(dataTwoOfTwo)); ///почему у тебя жестко захардкожен первый экран?
-  startGame();
-  rulesForm.reset();
-  rulesButton.setAttribute(`disabled`, `disabled`);
-}); */
+  /* rulesButton.addEventListener(`click`, () => {
+    // changeScreen(twoOfTwoGame(dataTwoOfTwo)); ///почему у тебя жестко захардкожен первый экран?
+    startGame();
+    rulesForm.reset();
+    rulesButton.setAttribute(`disabled`, `disabled`);
+  }); */
 
-rulesForm.addEventListener(`submit`, (event) => {
-  event.preventDefault();
-  startGame();
-});
+  rulesForm.addEventListener(`submit`, (event) => {
+    event.preventDefault();
+    startGame();
+  });
 
-const backButton = rulesScreen.querySelector(`.back`);
-backButton.addEventListener(`click`, () => {
-  changeScreen(greetingScreen);
-});
+  const backButton = rulesScreen.querySelector(`.back`);
+  backButton.addEventListener(`click`, () => {
+    changeScreen(getGreetingScreen());
+  });
+
+  return rulesScreen;
+};
+
+export {getRulesScreen};

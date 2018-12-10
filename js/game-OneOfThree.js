@@ -1,14 +1,12 @@
 import {changeScreen, getElementFromTemplate} from './util';
-import {greetingScreen} from './greeting';
-import {initialState, gameDataArray} from "./data";
+import {getGreetingScreen} from './greeting';
 import {gameQuestionTemplate} from "./game_question";
 import {getHeader} from "./header";
 import {getCurrentStats} from "./current_stats";
-import {getLevel} from "./game";
 
-const OneOfThreeGame = (questionObj) => {
+const oneOfThreeGame = (questionObj, state) => {
   const thirdGameTemplate = `
-    ${getHeader(initialState)}
+    ${getHeader(state)}
     <section class="game">
       <p class="game__task">Найдите рисунок среди изображений</p>
       <form class="game__content  game__content--triple">
@@ -30,16 +28,16 @@ const OneOfThreeGame = (questionObj) => {
   const answerForm = thirdGameScreen.querySelector(`.game__content`);
 
   answerForm.addEventListener(`click`, () => {
-    getLevel(gameDataArray);
+    // getLevel(gameDataArray);
     // changeScreen(getGameStats());
   });
 
   const backButton = thirdGameScreen.querySelector(`.back`);
   backButton.addEventListener(`click`, () => {
-    changeScreen(greetingScreen);
+    changeScreen(getGreetingScreen());
   });
 
   return thirdGameScreen;
 };
 
-export {OneOfThreeGame};
+export {oneOfThreeGame};

@@ -1,18 +1,22 @@
 import {changeScreen, getElementFromTemplate} from './util';
-import {greetingScreen} from './greeting';
+import {getGreetingScreen} from './greeting';
 
-const introTemplate = `
-<section class="intro">
+const getIntroScreen = () => {
+  const introTemplate = `
+  <section class="intro">
     <button class="intro__asterisk asterisk" type="button"><span class="visually-hidden">Продолжить</span>*</button>
     <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
   </section>`;
 
-const introScreen = getElementFromTemplate(introTemplate);
+  const introScreen = getElementFromTemplate(introTemplate);
 
-const asteriskButton = introScreen.querySelector(`.intro__asterisk`);
+  const asteriskButton = introScreen.querySelector(`.intro__asterisk`);
 
-asteriskButton.addEventListener(`click`, () => {
-  changeScreen(greetingScreen);
-});
+  asteriskButton.addEventListener(`click`, () => {
+    changeScreen(getGreetingScreen());
+  });
 
-export {introScreen};
+  return introScreen;
+};
+
+export {getIntroScreen};

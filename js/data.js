@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
-  time: 0,
-  lives: 1,
+  time: 30,
+  lives: 3,
   level: 0,
   answers: []
 };

@@ -1,4 +1,4 @@
 import {changeScreen} from './util';
-import {introScreen} from './intro';
+import {getIntroScreen} from './intro';
 
-changeScreen(introScreen);
+changeScreen(getIntroScreen());

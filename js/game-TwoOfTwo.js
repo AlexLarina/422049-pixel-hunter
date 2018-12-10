@@ -1,15 +1,12 @@
 import {changeScreen, getElementFromTemplate} from './util';
 import {getHeader} from "./header";
-import {greetingScreen} from './greeting';
-import {initialState} from "./data";
+import {getGreetingScreen} from './greeting';
 import {getQuestionWithAnswer} from "./game_question";
 import {getCurrentStats} from "./current_stats";
-import {gameDataArray} from "./data";
-import {getLevel} from "./game";
 
-const twoOfTwoGame = (questionObj) => {
+const twoOfTwoGame = (questionObj, state) => {
   const firstGameTemplate = `
-    ${getHeader(initialState)}
+    ${getHeader(state)}
     <section class="game">
       <p class="game__task">${questionObj.question}</p>
       <form class="game__content">
@@ -27,7 +24,7 @@ const twoOfTwoGame = (questionObj) => {
     const answerData = new FormData(gameForm);
     if (answerData.has(`question1`) && answerData.has(`question2`)) {
       // console.log(`answered!`);
-      getLevel(gameDataArray);
+      // getLevel(gameDataArray);
       // changeScreen(TinderLikeGame(dataTinderLike));
       gameForm.reset();
     }
@@ -35,7 +32,7 @@ const twoOfTwoGame = (questionObj) => {
 
   const backButton = firstGameScreen.querySelector(`.back`);
   backButton.addEventListener(`click`, () => {
-    changeScreen(greetingScreen);
+    changeScreen(getGreetingScreen());
   });
 
   return firstGameScreen;

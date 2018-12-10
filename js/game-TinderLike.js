@@ -1,15 +1,12 @@
 import {changeScreen, getElementFromTemplate} from './util.js';
-import {greetingScreen} from "./greeting";
-import {initialState} from "./data";
+import {getGreetingScreen} from "./greeting";
 import {getHeader} from "./header";
 import {getCurrentStats} from "./current_stats";
 import {getQuestionWithAnswer} from "./game_question";
-import {gameDataArray} from "./data";
-import {getLevel} from "./game";
 
-const TinderLikeGame = (questionObj) => {
+const tinderLikeGame = (questionObj, state) => {
   const secondGameTemplate = `
-    ${getHeader(initialState)}
+    ${getHeader(state)}
     <section class="game">
       <p class="game__task">Угадай, фото или рисунок?</p>
       <form class="game__content  game__content--wide">
@@ -25,7 +22,7 @@ const TinderLikeGame = (questionObj) => {
   gameForm.addEventListener(`change`, () => {
     const answerData = new FormData(gameForm);
     if (answerData.has(`question1`)) {
-      getLevel(gameDataArray);
+      // getLevel(gameDataArray);
       // changeScreen(OneOfThreeGame(dataOneOfThree));
       gameForm.reset();
     }
@@ -33,11 +30,11 @@ const TinderLikeGame = (questionObj) => {
 
   const backButton = secondGameScreen.querySelector(`.back`);
   backButton.addEventListener(`click`, () => {
-    changeScreen(greetingScreen);
+    changeScreen(getGreetingScreen());
   });
 
   return secondGameScreen;
 };
 
 
-export {TinderLikeGame};
+export {tinderLikeGame};
