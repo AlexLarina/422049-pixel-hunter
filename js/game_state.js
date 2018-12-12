@@ -1,16 +1,16 @@
-const changeLevel = (game, level) => {
-  if (typeof level !== `number`) {
+const changeLevel = (state) => {
+  if (typeof state.level !== `number`) {
     throw new Error(`Level should be of type number`);
   }
 
-  if (level < 0) {
+  if (state.level < 0) {
     throw new Error(`Level should not be negative value`);
   }
 
-  level++;
-  return Object.assign({}, game, {
-    level
-  });
+  const updatedState = Object.assign({}, state);
+  updatedState.level++;
+
+  return updatedState;
 };
 
 const canContinue = (game) => game.lives - 1 > 0;

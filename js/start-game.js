@@ -1,6 +1,6 @@
 import {INITIAL_STATE, gameDataArray} from "./data";
 import {getHeader} from "./header";
-// import {changeLevel, canContinue} from "./game_state";
+import {changeLevel, canContinue} from "./game_state";
 import {chooseGame} from "./game";
 import {changeScreen} from "./util";
 import {getCurrentStats} from "./current_stats";
@@ -31,15 +31,17 @@ const startGame = () => {
     levelContainer.appendChild(levelScreen);
     // levelContainer.appendChild(stats);
 
-    /* const gameForm = levelContainer.querySelector(`.game__content`);
+    const gameForm = levelContainer.querySelector(`.game__content`);
     gameForm.addEventListener(`click`, () => {
-      game.state++;
-      updateGame(game);
-    /* if (canContinue(game)) {
       game = changeLevel(game);
-      // updateGame(game);
-    }
-    }); */
+      updateGame(game);
+      /* game.state++;
+      updateGame(game);
+      if (canContinue(game)) {
+        game = changeLevel(game);
+        // updateGame(game);
+      } */
+    });
 
     return levelContainer;
   };
