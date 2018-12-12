@@ -1,5 +1,5 @@
 import {changeScreen, getElementFromTemplate} from './util';
-import {greetingScreen} from './greeting';
+import {getGreetingScreen} from './greeting';
 
 const getGameStats = () => {
   const statsTemplate = `
@@ -119,7 +119,7 @@ const getGameStats = () => {
 
   const backButton = statsScreen.querySelector(`.back`);
   backButton.addEventListener(`click`, () => {
-    changeScreen(greetingScreen);
+    changeScreen(getGreetingScreen());
   });
 
   return statsScreen;

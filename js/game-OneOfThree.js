@@ -1,8 +1,11 @@
 import {changeScreen, getElementFromTemplate} from './util';
-import {getGreetingScreen} from './greeting';
+// import {getGreetingScreen} from './greeting';
 import {gameQuestionTemplate} from "./game_question";
 import {getHeader} from "./header";
 import {getCurrentStats} from "./current_stats";
+import {updateGame} from "./start-game";
+import {changeLevel, canContinue} from "./game_state";
+import {getGameStats} from "./stats";
 
 const oneOfThreeGame = (level, state) => {
   const thirdGameTemplate = `
@@ -30,7 +33,13 @@ const oneOfThreeGame = (level, state) => {
   answerForm.addEventListener(`click`, () => {
     // getLevel(gameDataArray);
     // changeScreen(getGameStats());
-    state.level++;
+    console.log(`cancontinue = ` + canContinue(state));
+    if (canContinue) {
+      state = changeLevel(state);
+      updateGame(state);
+    } else {
+      changeScreen(getGameStats());
+    }
   });
 
   /* const backButton = thirdGameScreen.querySelector(`.back`);

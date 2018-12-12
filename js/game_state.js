@@ -1,3 +1,5 @@
+const LAST_LEVEL = 4;
+
 const changeLevel = (state) => {
   if (typeof state.level !== `number`) {
     throw new Error(`Level should be of type number`);
@@ -13,7 +15,9 @@ const changeLevel = (state) => {
   return updatedState;
 };
 
-const canContinue = (game) => game.lives - 1 > 0;
+const canContinue = (game) => {
+  return game.level < LAST_LEVEL;
+};
 
 const die = (game) => {
   if (!canContinue(game)) {

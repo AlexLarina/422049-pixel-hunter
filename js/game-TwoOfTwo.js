@@ -1,8 +1,11 @@
 import {changeScreen, getElementFromTemplate} from './util';
 import {getHeader} from "./header";
-import {getGreetingScreen} from './greeting';
+// import {getGreetingScreen} from './greeting';
 import {getQuestionWithAnswer} from "./game_question";
 import {getCurrentStats} from "./current_stats";
+import {updateGame} from "./start-game";
+import {changeLevel, canContinue} from "./game_state";
+import {getGameStats} from "./stats";
 
 const twoOfTwoGame = (level, state) => {
   const firstGameTemplate = `
@@ -26,7 +29,15 @@ const twoOfTwoGame = (level, state) => {
       // alert(`answered!`);
       // getLevel(gameDataArray);
       // changeScreen(TinderLikeGame(dataTinderLike));
-      state.level++;
+      console.log(`cancontinue = ` + canContinue(state));
+      if (canContinue) {
+        state = changeLevel(state);
+        updateGame(state);
+      } else {
+        changeScreen(getGameStats());
+      }
+      // state = changeLevel(state);
+      // updateGame(state);
       gameForm.reset();
     }
   });

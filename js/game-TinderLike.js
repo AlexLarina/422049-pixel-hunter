@@ -1,8 +1,11 @@
 import {changeScreen, getElementFromTemplate} from './util.js';
-import {getGreetingScreen} from "./greeting";
+// import {getGreetingScreen} from "./greeting";
 import {getHeader} from "./header";
 import {getCurrentStats} from "./current_stats";
 import {getQuestionWithAnswer} from "./game_question";
+import {updateGame} from "./start-game";
+import {changeLevel, canContinue} from "./game_state";
+import {getGameStats} from "./stats";
 
 const tinderLikeGame = (level, state) => {
   const secondGameTemplate = `
@@ -24,7 +27,13 @@ const tinderLikeGame = (level, state) => {
     if (answerData.has(`question1`)) {
       // getLevel(gameDataArray);
       // changeScreen(OneOfThreeGame(dataOneOfThree));
-      state.level++;
+      console.log(`cancontinue = ` + canContinue(state));
+      if (canContinue) {
+        state = changeLevel(state);
+        updateGame(state);
+      } else {
+        changeScreen(getGameStats());
+      }
       gameForm.reset();
     }
   });

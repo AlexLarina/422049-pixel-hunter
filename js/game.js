@@ -20,6 +20,7 @@ const chooseGame = (level, state) => {
     default:
       gameScreen = getRulesScreen();
   }
+
   return gameScreen;
 };
 

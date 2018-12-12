@@ -10,45 +10,40 @@ let game;
 const startGame = () => {
   // alert(`game started!`);
   game = Object.assign({}, INITIAL_STATE);
-  // console.log(game.time);
-
-  const getLevel = () => gameDataArray[game.level];
-  const levelContainer = document.createElement(`section`);
-  levelContainer.innerHTML = ``;
-
-
-  const updateGame = (state) => {
-    const level = getLevel();
-    // console.log(level);
-    const header = getHeader(state);
-    const stats = getCurrentStats();
-    // console.log(level);
-
-    // const levelScreen = renderLevel(state, level);
-    const levelScreen = chooseGame(level, state);
-
-    levelContainer.appendChild(header);
-    levelContainer.appendChild(levelScreen);
-    // levelContainer.appendChild(stats);
-
-    const gameForm = levelContainer.querySelector(`.game__content`);
-    gameForm.addEventListener(`click`, () => {
-      game = changeLevel(game);
-      updateGame(game);
-      /* game.state++;
-      updateGame(game);
-      if (canContinue(game)) {
-        game = changeLevel(game);
-        // updateGame(game);
-      } */
-    });
-
-    return levelContainer;
-  };
-
   updateGame(game);
-  changeScreen(levelContainer);
-
 };
 
-export {startGame};
+const updateGame = (state) => {
+  const level = gameDataArray[state.level];
+  console.log(level);
+  const header = getHeader(state);
+  const stats = getCurrentStats();
+  // console.log(level);
+
+  // const levelScreen = renderLevel(state, level);
+  const levelScreen = chooseGame(level, state);
+
+  const container = document.createElement(`section`);
+  container.innerHTML = ``;
+  container.appendChild(header);
+  container.appendChild(levelScreen);
+  // container.appendChild(stats);
+
+  /* const gameForm = container.querySelector(`.game__content`);
+  gameForm.addEventListener(`click`, () => {
+    game = changeLevel(game);
+    updateGame(game);
+    /* game.state++;
+    updateGame(game);
+    if (canContinue(game)) {
+      game = changeLevel(game);
+      // updateGame(game);
+    }
+  }); */
+
+  changeScreen(container);
+
+  return container;
+};
+
+export {startGame, updateGame};
