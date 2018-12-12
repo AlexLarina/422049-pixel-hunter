@@ -1,5 +1,5 @@
-import {INITIAL_STATE, gameDataArray} from "./data";
-import {getHeader} from "./header";
+import {INITIAL_STATE, gameDataArray} from "../data/data";
+import {getHeader} from "../templates/header";
 import {chooseGame} from "./game";
 import {changeScreen} from "./util";
 

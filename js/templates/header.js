@@ -1,4 +1,4 @@
-import {getElementFromTemplate, changeScreen} from "./util";
+import {getElementFromTemplate, changeScreen} from "../game/util";
 import {getGreetingScreen} from "./greeting";
 
 const getHeader = (state) => {

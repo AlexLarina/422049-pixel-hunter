@@ -1,10 +1,10 @@
-import {changeScreen, getElementFromTemplate} from './util';
+import {changeScreen, getElementFromTemplate} from '../game/util';
 import {gameQuestionTemplate} from "./game_question";
 import {getCurrentStats} from "./current_stats";
-import {updateGame} from "./start-game";
-import {changeLevel, canContinue} from "./game_state";
+import {updateGame} from "../game/start-game";
+import {changeLevel, canContinue} from "../game/game_state";
 import {getGameStats} from "./stats";
-import {saveAnswer} from "./game";
+import {saveAnswer} from "../game/game";
 
 const oneOfThreeGame = (level, state) => {
   const thirdGameTemplate = `

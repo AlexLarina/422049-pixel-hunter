@@ -1,4 +1,4 @@
-import {changeScreen} from './util';
-import {getIntroScreen} from './intro';
+import {changeScreen} from './game/util';
+import {getIntroScreen} from './templates/intro';
 
 changeScreen(getIntroScreen());

@@ -1,4 +1,4 @@
-import {changeScreen, getElementFromTemplate} from './util';
+import {changeScreen, getElementFromTemplate} from '../game/util';
 import {getGreetingScreen} from './greeting';
 
 const getGameStats = () => {
