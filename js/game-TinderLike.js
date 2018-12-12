@@ -29,7 +29,7 @@ const tinderLikeGame = (level, state) => {
       saveAnswer(state, answerArray);
 
       state = changeLevel(state);
-      if (canContinue) {
+      if (canContinue(state)) {
         updateGame(state);
       } else {
         changeScreen(getGameStats());

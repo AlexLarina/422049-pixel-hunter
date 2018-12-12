@@ -18,6 +18,7 @@ const updateGame = (state) => {
 
   const container = document.createElement(`section`);
   container.innerHTML = ``;
+
   container.appendChild(header);
   container.appendChild(levelScreen);
 

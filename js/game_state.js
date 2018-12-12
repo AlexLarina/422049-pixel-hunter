@@ -1,4 +1,4 @@
-const LAST_LEVEL = 4;
+const LAST_LEVEL = 5;
 
 const changeLevel = (state) => {
   if (typeof state.level !== `number`) {
@@ -17,8 +17,8 @@ const changeLevel = (state) => {
   return updatedState;
 };
 
-const canContinue = (game) => {
-  return game.level < LAST_LEVEL;
+const canContinue = (state) => {
+  return state.level < LAST_LEVEL;
 };
 
 const die = (game) => {

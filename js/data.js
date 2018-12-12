@@ -108,6 +108,28 @@ const gameDataArray = [
         "type": `photo`
       }
     ]
+  },
+  {
+    "type": `two-of-two`,
+    "question": `Угадайте для каждого изображения фото или рисунок?`,
+    "answers": [
+      {
+        "image": {
+          "url": `http://placehold.it/468x458`,
+          "width": 468,
+          "height": 458
+        },
+        "type": `photo`
+      },
+      {
+        "image": {
+          "url": `http://placehold.it/468x458`,
+          "width": 468,
+          "height": 458
+        },
+        "type": `painting`
+      }
+    ]
   }
 ];
 
