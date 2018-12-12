@@ -5,8 +5,8 @@ const getCurrentStats = () => {
       .fill(`<li class="stats__result stats__result--wrong"></li>`)
       .join(``)}
   </ul>`;
-  return currentStatsTemplate;
 
+  return currentStatsTemplate;
 };
 
 export {getCurrentStats};

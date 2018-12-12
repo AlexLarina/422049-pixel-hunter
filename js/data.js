@@ -96,29 +96,13 @@ const gameDataArray = [
     ]
   },
   {
-    "type": `one-of-three`,
-    "question": `Найдите фото среди изображений`,
+    "type": `tinder-like`,
+    "question": `Угадай, фото или рисунок?`,
     "answers": [
       {
         "image": {
-          "url": `http://placehold.it/304x455`,
-          "width": 304,
-          "height": 455
-        },
-        "type": `painting`
-      },
-      {
-        "image": {
-          "url": `http://placehold.it/304x455`,
-          "width": 304,
-          "height": 455
-        },
-        "type": `painting`
-      },
-      {
-        "image": {
-          "url": `http://placehold.it/304x455`,
-          "width": 304,
+          "url": `http://placehold.it/705x455`,
+          "width": 705,
           "height": 455
         },
         "type": `photo`

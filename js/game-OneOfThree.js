@@ -1,15 +1,13 @@
 import {changeScreen, getElementFromTemplate} from './util';
-// import {getGreetingScreen} from './greeting';
 import {gameQuestionTemplate} from "./game_question";
-import {getHeader} from "./header";
 import {getCurrentStats} from "./current_stats";
 import {updateGame} from "./start-game";
 import {changeLevel, canContinue} from "./game_state";
 import {getGameStats} from "./stats";
+import {saveAnswer} from "./game";
 
 const oneOfThreeGame = (level, state) => {
   const thirdGameTemplate = `
-    ${getHeader(state)}
     <section class="game">
       <p class="game__task">Найдите рисунок среди изображений</p>
       <form class="game__content  game__content--triple">
@@ -29,23 +27,21 @@ const oneOfThreeGame = (level, state) => {
   const thirdGameScreen = getElementFromTemplate(thirdGameTemplate);
 
   const answerForm = thirdGameScreen.querySelector(`.game__content`);
+  const answerArray = [];
 
-  answerForm.addEventListener(`click`, () => {
-    // getLevel(gameDataArray);
-    // changeScreen(getGameStats());
-    console.log(`cancontinue = ` + canContinue(state));
+  answerForm.addEventListener(`click`, (evt) => {
+
+    answerArray.push(evt.target.src);
+    saveAnswer(state, answerArray);
+
+    state = changeLevel(state);
+
     if (canContinue) {
-      state = changeLevel(state);
       updateGame(state);
     } else {
       changeScreen(getGameStats());
     }
   });
-
-  /* const backButton = thirdGameScreen.querySelector(`.back`);
-  backButton.addEventListener(`click`, () => {
-    changeScreen(getGreetingScreen());
-  }); */
 
   return thirdGameScreen;
 };

@@ -10,7 +10,9 @@ const changeLevel = (state) => {
   }
 
   const updatedState = Object.assign({}, state);
-  updatedState.level++;
+  if (state.level < LAST_LEVEL) {
+    updatedState.level++;
+  }
 
   return updatedState;
 };

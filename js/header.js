@@ -1,4 +1,5 @@
-import {getElementFromTemplate} from "./util";
+import {getElementFromTemplate, changeScreen} from "./util";
+import {getGreetingScreen} from "./greeting";
 
 const getHeader = (state) => {
   const headerTemplate = `<header class="header">
@@ -25,8 +26,15 @@ const getHeader = (state) => {
     </div>
   </header>`;
 
-  // return headerTemplate;
-  return getElementFromTemplate(headerTemplate);
+  const header = getElementFromTemplate(headerTemplate);
+
+  const backButton = header.querySelector(`.back`);
+  backButton.addEventListener(`click`, () => {
+    changeScreen(getGreetingScreen());
+  });
+
+
+  return header;
 };
 
 export {getHeader};
