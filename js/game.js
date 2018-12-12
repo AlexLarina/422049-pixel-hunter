@@ -5,17 +5,17 @@ import {tinderLikeGame} from "./game-TinderLike";
 import {oneOfThreeGame} from "./game-OneOfThree";
 import {getRulesScreen} from "./rules";
 
-const chooseGame = (level) => {
+const chooseGame = (level, state) => {
   let gameScreen;
   switch (level.type) {
     case `two-of-two`:
-      gameScreen = twoOfTwoGame(level);
+      gameScreen = twoOfTwoGame(level, state);
       break;
     case `tinder-like`:
-      gameScreen = tinderLikeGame(level);
+      gameScreen = tinderLikeGame(level, state);
       break;
     case `one-of-three`:
-      gameScreen = oneOfThreeGame(level);
+      gameScreen = oneOfThreeGame(level, state);
       break;
     default:
       gameScreen = getRulesScreen();

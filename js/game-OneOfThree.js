@@ -4,20 +4,20 @@ import {gameQuestionTemplate} from "./game_question";
 import {getHeader} from "./header";
 import {getCurrentStats} from "./current_stats";
 
-const oneOfThreeGame = (questionObj, state) => {
+const oneOfThreeGame = (level, state) => {
   const thirdGameTemplate = `
     ${getHeader(state)}
     <section class="game">
       <p class="game__task">Найдите рисунок среди изображений</p>
       <form class="game__content  game__content--triple">
       ${new Array(1)
-        .fill(gameQuestionTemplate(questionObj.answers[0].image.url, 1))
+        .fill(gameQuestionTemplate(level.answers[0].image.url, 1))
         .join(``)}
       ${new Array(1)
-        .fill(gameQuestionTemplate(questionObj.answers[1].image.url, 2))
+        .fill(gameQuestionTemplate(level.answers[1].image.url, 2))
         .join(``)}
       ${new Array(1)
-        .fill(gameQuestionTemplate(questionObj.answers[2].image.url, 3))
+        .fill(gameQuestionTemplate(level.answers[2].image.url, 3))
         .join(``)}
       </form>
       ${getCurrentStats()}
@@ -30,12 +30,13 @@ const oneOfThreeGame = (questionObj, state) => {
   answerForm.addEventListener(`click`, () => {
     // getLevel(gameDataArray);
     // changeScreen(getGameStats());
+    state.level++;
   });
 
-  const backButton = thirdGameScreen.querySelector(`.back`);
+  /* const backButton = thirdGameScreen.querySelector(`.back`);
   backButton.addEventListener(`click`, () => {
     changeScreen(getGreetingScreen());
-  });
+  }); */
 
   return thirdGameScreen;
 };

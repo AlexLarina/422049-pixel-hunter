@@ -4,13 +4,13 @@ import {getHeader} from "./header";
 import {getCurrentStats} from "./current_stats";
 import {getQuestionWithAnswer} from "./game_question";
 
-const tinderLikeGame = (questionObj, state) => {
+const tinderLikeGame = (level, state) => {
   const secondGameTemplate = `
     ${getHeader(state)}
     <section class="game">
       <p class="game__task">Угадай, фото или рисунок?</p>
       <form class="game__content  game__content--wide">
-      ${getQuestionWithAnswer(questionObj.answers[0].image.url, 1)}
+      ${getQuestionWithAnswer(level.answers[0].image.url, 1)}
       </form>
       ${getCurrentStats()}
     </section>`;
@@ -24,14 +24,15 @@ const tinderLikeGame = (questionObj, state) => {
     if (answerData.has(`question1`)) {
       // getLevel(gameDataArray);
       // changeScreen(OneOfThreeGame(dataOneOfThree));
+      state.level++;
       gameForm.reset();
     }
   });
 
-  const backButton = secondGameScreen.querySelector(`.back`);
+  /* const backButton = secondGameScreen.querySelector(`.back`);
   backButton.addEventListener(`click`, () => {
     changeScreen(getGreetingScreen());
-  });
+  }); */
 
   return secondGameScreen;
 };
