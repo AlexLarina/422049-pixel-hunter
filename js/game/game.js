@@ -1,6 +1,6 @@
-import {twoOfTwoGame} from "../templates/game-TwoOfTwo";
-import {tinderLikeGame} from "../templates/game-TinderLike";
-import {oneOfThreeGame} from "../templates/game-OneOfThree";
+import {twoOfTwoGame} from "../templates/game-two-of-two";
+import {tinderLikeGame} from "../templates/game-tinder-like";
+import {oneOfThreeGame} from "../templates/game-one-of-three";
 import {getRulesScreen} from "../templates/rules";
 
 const chooseGame = (level, state) => {

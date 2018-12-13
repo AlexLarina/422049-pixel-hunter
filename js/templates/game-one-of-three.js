@@ -11,14 +11,7 @@ const oneOfThreeGame = (level, state) => {
     <section class="game">
       <p class="game__task">Найдите рисунок среди изображений</p>
       <form class="game__content  game__content--triple">
-      ${new Array(1)
-        .fill(gameQuestionTemplate(level.answers[0].image.url, 1))
-        .join(``)}
-      ${new Array(1)
-        .fill(gameQuestionTemplate(level.answers[1].image.url, 2))
-        .join(``)}
-      ${new Array(1)
-        .fill(gameQuestionTemplate(level.answers[2].image.url, 3))
+      ${Array.from({length: 3}).map((value, index)=>gameQuestionTemplate(level.answers[index].image.url, index + 1))
         .join(``)}
       </form>
       ${getCurrentStats()}
