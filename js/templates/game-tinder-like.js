@@ -1,44 +1,28 @@
-import {changeScreen, getElementFromTemplate} from '../game/util.js';
-import {getCurrentStats} from "./current_stats";
-import {getQuestionWithAnswer} from "./game_question";
 import {updateGame} from "../game/start-game";
 import {changeLevel, canContinue} from "../game/game_state";
 import {getGameStats} from "./stats";
 import {saveAnswer} from "../game/game";
+import TinderLikeGameView from "../view/game-tinder-like-view";
+
 
 const tinderLikeGame = (level, state) => {
-  const secondGameTemplate = `
-    <section class="game">
-      <p class="game__task">Угадай, фото или рисунок?</p>
-      <form class="game__content  game__content--wide">
-      ${getQuestionWithAnswer(level.answers[0].image.url, 1)}
-      </form>
-      ${getCurrentStats()}
-    </section>`;
-
-  const secondGameScreen = getElementFromTemplate(secondGameTemplate);
-
-  const gameForm = secondGameScreen.querySelector(`.game__content`);
+  const secondGameScreen = new TinderLikeGameView(level);
   const answerArray = [];
 
-  gameForm.addEventListener(`change`, () => {
-    const answerData = new FormData(gameForm);
-    if (answerData.has(`question1`)) {
+  secondGameScreen.onSaveAnswer = () => {
+    saveAnswer(state, answerArray);
+  };
 
-      answerArray.push(answerData.getAll(`question2`));
-      saveAnswer(state, answerArray);
-
-      state = changeLevel(state);
-      if (canContinue(state)) {
-        updateGame(state);
-      } else {
-        changeScreen(getGameStats());
-      }
-      gameForm.reset();
+  secondGameScreen.onGameContinue = () => {
+    state = changeLevel(state);
+    if (canContinue(state)) {
+      updateGame(state);
+    } else {
+      getGameStats();
     }
-  });
+  };
 
-  return secondGameScreen;
+  return secondGameScreen.element;
 };
 
 
