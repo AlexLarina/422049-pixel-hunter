@@ -17,10 +17,10 @@ class GameTwoOfTwoView extends AbstractView {
     <section class="game">
       <p class="game__task">${this.level.question}</p>
       <form class="game__content">
-      ${question1}
-      ${question2}
+      ${question1.template}
+      ${question2.template}
       </form>
-      ${stats}
+      ${stats.template}
     </section>
   `;
   }
@@ -36,20 +36,19 @@ class GameTwoOfTwoView extends AbstractView {
 
         answerArray.push(answerData.getAll(`question1`));
         answerArray.push(answerData.getAll(`question2`));
-        saveAnswer(state, answerArray);
 
-        state = changeLevel(state);
-        if (canContinue(state)) {
-          updateGame(state);
-        } else {
-          this.onGetGameStats();
-        }
+        this.onSaveAnswer();
+        this.onGameContinue();
         gameForm.reset();
       }
     });
   }
 
-  onGetGameStats() {
+  onSaveAnswer() {
+
+  }
+
+  onGameContinue() {
 
   }
 }

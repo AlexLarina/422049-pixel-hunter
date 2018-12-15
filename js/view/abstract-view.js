@@ -1,7 +1,7 @@
 class AbstractView {
   constructor() {
     if (new.target === AbstractView) {
-      throw new Error(`This is abstrct class! No instance permitted!`);
+      throw new Error(`This is abstract class! No instance permitted!`);
     }
   }
 
@@ -11,7 +11,7 @@ class AbstractView {
 
   render() {
     this._container = document.createElement(`section`);
-    this._container.innerHTML = this.template();
+    this._container.innerHTML = this.template.trim();
 
     return this._container;
   }

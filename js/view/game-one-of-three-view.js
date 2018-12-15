@@ -9,16 +9,19 @@ class OneOfThreeGameView extends AbstractView {
   }
 
   get template() {
-    // пока непонятно, как тут сделать
-    let question = new Question();
+    const question1 = new Question(this.level.answers[0].image.url, 1);
+    const question2 = new Question(this.level.answers[0].image.url, 2);
+    const question3 = new Question(this.level.answers[0].image.url, 3);
+
     const stats = new CurrentStatsView();
 
     return `
     <section class="game">
       <p class="game__task">Найдите рисунок среди изображений</p>
       <form class="game__content  game__content--triple">
-      ${Array.from({length: 3}).map((value, index) => question(value, index))
-        .join(``)}
+      ${question1.template}
+      ${question2.template}
+      ${question3.template}
       </form>
       ${stats}
     </section>`;
@@ -31,20 +34,19 @@ class OneOfThreeGameView extends AbstractView {
     answerForm.addEventListener(`click`, (evt) => {
 
       answerArray.push(evt.target.src);
-      saveAnswer(state, answerArray);
-
-      state = changeLevel(state);
-      if (canContinue(state)) {
-        updateGame(state);
-      } else {
-        this.onGetGameStats();
-      }
+      this.onSaveAnswer();
+      this.onGameContinue();
     });
   }
 
-  onGetGameStats() {
+  onSaveAnswer() {
+
+  }
+
+  onGameContinue() {
 
   }
 }
 
 export default OneOfThreeGameView;
+

@@ -16,9 +16,9 @@ class TinderLikeGameView extends AbstractView {
     <section class="game">
       <p class="game__task">Угадай, фото или рисунок?</p>
       <form class="game__content  game__content--wide">
-      ${question}
+      ${question.template}
       </form>
-      ${stats}
+      ${stats.template}
     </section>`;
   }
 
@@ -31,20 +31,17 @@ class TinderLikeGameView extends AbstractView {
       if (answerData.has(`question1`)) {
 
         answerArray.push(answerData.getAll(`question2`));
-        saveAnswer(state, answerArray);
-
-        state = changeLevel(state);
-        if (canContinue(state)) {
-          updateGame(state);
-        } else {
-          this.onGetGameStats();
-        }
-        gameForm.reset();
+        this.onSaveAnswer();
+        this.onGameContinue();
       }
     });
   }
 
-  onGetGameStats() {
+  onSaveAnswer() {
+
+  }
+
+  onGameContinue() {
 
   }
 }
