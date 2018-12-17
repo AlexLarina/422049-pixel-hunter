@@ -21,14 +21,14 @@ const canContinue = (state) => {
   return state.level < LAST_LEVEL;
 };
 
-const die = (game) => {
-  if (!canContinue(game)) {
+const die = (state) => {
+  if (!canContinue(state)) {
     throw new Error(`You can't continue anymore`);
   }
 
-  const lives = game.lives - 1;
+  const lives = state.lives - 1;
 
-  return Object.assign({}, game, {
+  return Object.assign({}, state, {
     lives
   });
 };
