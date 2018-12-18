@@ -11,7 +11,7 @@ class GreetingScreen {
   }
 
   bind(click) {
-    this.bind.onClick = click;
+    this.greetingScreen.onGetRules = click;
   }
 }
 

@@ -10,8 +10,8 @@ class IntroScreen {
     return this.introScreen.element;
   }
 
-  bind(func) {
-    this.bind.onGreeting = func;
+  bind(click) {
+    this.introScreen.onGreeting = click;
   }
 }
 
