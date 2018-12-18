@@ -1,6 +1,6 @@
 import {INITIAL_STATE, gameDataArray} from "../data/data";
 import {changeLevel, die} from "../game/game_state";
-import {tick} from "../game/timer";
+import tick from "../game/timer";
 
 const getLevel = (level) => gameDataArray[level];
 

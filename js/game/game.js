@@ -1,7 +1,7 @@
 import {twoOfTwoGame} from "../templates/game-two-of-two";
 import {tinderLikeGame} from "../templates/game-tinder-like";
 import {oneOfThreeGame} from "../templates/game-one-of-three";
-import {getRulesScreen} from "../templates/rules";
+// import {getRulesScreen} from "../templates/rules";
 
 const chooseGame = (level, state) => {
   let gameScreen;
@@ -15,8 +15,8 @@ const chooseGame = (level, state) => {
     case `one-of-three`:
       gameScreen = oneOfThreeGame(level, state);
       break;
-    default:
-      gameScreen = getRulesScreen();
+    // default:
+    //  gameScreen = getRulesScreen();
   }
 
   return gameScreen;

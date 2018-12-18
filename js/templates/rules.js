@@ -1,20 +1,19 @@
-import {changeScreen} from '../game/util';
-import {getGreetingScreen} from './greeting';
-import {startGame} from '../game/start-game';
 import RulesView from "../view/rules-view";
 
-const getRulesScreen = () => {
-  const rulesScreen = new RulesView();
+class RulesScreen {
+  constructor(funcBack, funcForward) {
+    this.rulesScreen = new RulesView();
+    this.bind(funcBack, funcForward);
+  }
 
-  rulesScreen.onGreeting = () => {
-    getGreetingScreen();
-  };
+  get element() {
+    return this.rulesScreen.element;
+  }
 
-  rulesScreen.onGameStart = () => {
-    startGame();
-  };
+  bind(funcBack, funcForward) {
+    this.bind.onGreeting = funcBack;
+    this.bind.onGameStart = funcForward;
+  }
+}
 
-  changeScreen(rulesScreen.element);
-};
-
-export {getRulesScreen};
+export default RulesScreen;

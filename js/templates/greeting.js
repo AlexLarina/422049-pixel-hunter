@@ -13,13 +13,6 @@ class GreetingScreen {
   bind(click) {
     this.bind.onClick = click;
   }
-  // const greetingScreen = new GreetingView();
-
-  /* greetingScreen.onGetRules = () => {
-    getRulesScreen();
-  };
-
-  changeScreen(greetingScreen.element); */
 }
 
 export default GreetingScreen;

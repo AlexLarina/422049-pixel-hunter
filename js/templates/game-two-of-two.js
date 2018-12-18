@@ -1,6 +1,6 @@
 import {updateGame} from "../game/start-game";
 import {changeLevel, canContinue} from "../game/game_state";
-import {getGameStats} from "./stats";
+// import {getGameStats} from "./stats";
 import {saveAnswer} from "../game/game";
 import GameTwoOfTwoView from "../view/game-two-of-two-view";
 
@@ -16,7 +16,7 @@ const twoOfTwoGame = (level, state) => {
     if (canContinue(state)) {
       updateGame(state);
     } else {
-      getGameStats();
+      // getGameStats();
     }
   };
   return firstGameScreen.element;

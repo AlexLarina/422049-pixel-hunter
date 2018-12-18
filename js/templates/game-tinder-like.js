@@ -1,6 +1,6 @@
 import {updateGame} from "../game/start-game";
 import {changeLevel, canContinue} from "../game/game_state";
-import {getGameStats} from "./stats";
+// import {getGameStats} from "./stats";
 import {saveAnswer} from "../game/game";
 import TinderLikeGameView from "../view/game-tinder-like-view";
 
@@ -18,7 +18,7 @@ const tinderLikeGame = (level, state) => {
     if (canContinue(state)) {
       updateGame(state);
     } else {
-      getGameStats();
+      // getGameStats();
     }
   };
 

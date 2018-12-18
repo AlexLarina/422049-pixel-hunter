@@ -1,10 +1,10 @@
-import {getGreetingScreen} from "./greeting";
+// import {getGreetingScreen} from "./greeting";
 import HeaderView from "../view/header-view";
 
 const getHeader = (state) => {
   const header = new HeaderView(state);
   header.onRestart = () => {
-    getGreetingScreen();
+    // getGreetingScreen();
   };
   return header.element;
 };

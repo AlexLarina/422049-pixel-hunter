@@ -1,14 +1,24 @@
-import {changeScreen} from '../game/util';
-import {getGreetingScreen} from './greeting';
 import StatsView from "../view/stats-view";
 
-const getGameStats = () => {
-  const statsScreen = new StatsView();
-  statsScreen.onGreeting = () => {
+class GameStatsScreen {
+  constructor(click) {
+    this.statsScreen = new StatsView();
+    this.bind(click);
+  }
+
+  get element() {
+    return this.statsScreen.element;
+  }
+
+  bind(click) {
+    this.bind.onGreeting = click;
+  }
+
+  /* statsScreen.onGreeting = () => {
     getGreetingScreen();
   };
 
-  changeScreen(statsScreen.element);
-};
+  changeScreen(statsScreen.element);*/
+}
 
-export {getGameStats};
+export default GameStatsScreen;
