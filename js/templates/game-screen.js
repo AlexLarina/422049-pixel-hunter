@@ -14,11 +14,40 @@ class GameScreen {
     return this.level.element;
   }
 
+  changeLevel() {
+
+  }
+
+  updateHeader() {
+
+  }
+
+  updateTime() {
+
+  }
+
+  startGame() {
+    this.changeLevel();
+    this._tick();
+  }
+
   stopGame() {
     clearInterval(this._timer);
   }
 
+  _tick() {
+    this.model.tick();
+    this.updateHeader();
+    this._timer = setTimeout(() => this._tick(), 1000);
+  }
 
+  answer() {
+
+  }
+
+  endGame() {
+
+  }
 }
 
 export default GameScreen;

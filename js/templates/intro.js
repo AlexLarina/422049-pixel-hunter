@@ -1,14 +1,18 @@
-import {changeScreen} from '../game/util';
-import {getGreetingScreen} from './greeting';
 import IntroView from '../view/intro-view';
 
-const getIntroScreen = () => {
-  const introScreen = new IntroView();
+class IntroScreen {
+  constructor(click) {
+    this.introScreen = new IntroView();
+    this.bind(click);
+  }
 
-  introScreen.onGreeting = () => {
-    getGreetingScreen();
-  };
-  changeScreen(introScreen.element);
-};
+  get element() {
+    return this.introScreen.element;
+  }
 
-export {getIntroScreen};
+  bind(click) {
+    this.bind.onGreeting = click;
+  }
+}
+
+export default IntroScreen;

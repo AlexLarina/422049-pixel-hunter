@@ -1,3 +1,5 @@
-import {getIntroScreen} from './templates/intro';
+// import {getIntroScreen} from './templates/intro';
+import Application from "./app";
 
-getIntroScreen();
+const app = new Application();
+app.showIntro();

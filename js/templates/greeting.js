@@ -1,16 +1,26 @@
-import {changeScreen} from '../game/util';
-import {getRulesScreen} from './rules';
 import GreetingView from "../view/greeting-view";
 
-const getGreetingScreen = () => {
-  const greetingScreen = new GreetingView();
+class GreetingScreen {
+  constructor(click) {
+    this.greetingScreen = new GreetingView();
+    this.bind(click);
+  }
 
-  greetingScreen.onGetRules = () => {
+  get element() {
+    return this.greetingScreen.element;
+  }
+
+  bind(click) {
+    this.bind.onClick = click;
+  }
+  // const greetingScreen = new GreetingView();
+
+  /* greetingScreen.onGetRules = () => {
     getRulesScreen();
   };
 
-  changeScreen(greetingScreen.element);
-};
+  changeScreen(greetingScreen.element); */
+}
 
-export {getGreetingScreen};
+export default GreetingScreen;
 
