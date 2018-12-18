@@ -1,12 +1,22 @@
-import {updateGame} from "../game/start-game";
-import {changeLevel, canContinue} from "../game/game_state";
+// import {updateGame} from "../game/start-game";
+// import {changeLevel, canContinue} from "../game/game_state";
 // import {getGameStats} from "./stats";
-import {saveAnswer} from "../game/game";
+// import {saveAnswer} from "../game/game";
 import TinderLikeGameView from "../view/game-tinder-like-view";
 
 
-const tinderLikeGame = (level, state) => {
-  const secondGameScreen = new TinderLikeGameView(level);
+class TinderLikeGame {
+  constructor(state, gameContinue, saveAnswer) {
+    this.secondGameScreen = new TinderLikeGameView(state.level);
+    this.bind(gameContinue, saveAnswer);
+  }
+
+  bind(gameContinue, saveAnswer) {
+    this.secondGameScreen.onGameContinue = gameContinue;
+    this.secondGameScreen.onSaveAnswer = saveAnswer;
+  }
+
+  /* const secondGameScreen = new TinderLikeGameView(level);
   const answerArray = [];
 
   secondGameScreen.onSaveAnswer = () => {
@@ -22,8 +32,8 @@ const tinderLikeGame = (level, state) => {
     }
   };
 
-  return secondGameScreen.element;
-};
+  return secondGameScreen.element; */
+}
 
 
-export {tinderLikeGame};
+export default TinderLikeGame;

@@ -1,11 +1,20 @@
-import {updateGame} from "../game/start-game";
-import {changeLevel, canContinue} from "../game/game_state";
+// import {updateGame} from "../game/start-game";
+// import {changeLevel, canContinue} from "../game/game_state";
 // import {getGameStats} from "./stats";
-import {saveAnswer} from "../game/game";
+// import {saveAnswer} from "../game/game";
 import OneOfThreeGameView from "../view/game-one-of-three-view";
 
-const oneOfThreeGame = (level, state) => {
-  const thirdGameScreen = new OneOfThreeGameView(level);
+class OneOfThreeGame {
+  constructor(state, gameContinue, saveAnswer) {
+    this.thirdGameScreen = new OneOfThreeGameView(state.level);
+    this.bind(gameContinue, saveAnswer);
+  }
+
+  bind(gameContinue, saveAnswer) {
+    this.thirdGameScreen.onGameContinue = gameContinue;
+    this.thirdGameScreen.onSaveAnswer = saveAnswer;
+  }
+  /* const thirdGameScreen = new OneOfThreeGameView(level);
   const answerArray = [];
 
   thirdGameScreen.onSaveAnswer = () => {
@@ -21,7 +30,7 @@ const oneOfThreeGame = (level, state) => {
     }
   };
 
-  return thirdGameScreen.element;
-};
+  return thirdGameScreen.element; */
+}
 
-export {oneOfThreeGame};
+export default OneOfThreeGame;

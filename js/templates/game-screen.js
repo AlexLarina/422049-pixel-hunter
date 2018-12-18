@@ -5,7 +5,7 @@ class GameScreen {
   constructor(model) {
     this.model = model;
     this.header = new HeaderView(this.model.state);
-    this.content = chooseGame(this.model.getCurrentLevel(), this.model.state);
+    this.level = chooseGame(this.model.getCurrentLevel(this.model), this.model.state);
 
     this._timer = null;
   }
@@ -15,7 +15,7 @@ class GameScreen {
   }
 
   changeLevel() {
-
+    const level = ;
   }
 
   updateHeader() {
