@@ -1,11 +1,13 @@
 import AbstractView from "./abstract-view";
 import {Question} from "./question-view";
 import CurrentStatsView from "./current-stats-view";
+import HeaderView from "./header-view";
 
 class OneOfThreeGameView extends AbstractView {
-  constructor(level) {
+  constructor(state, level) {
     super();
     this.level = level;
+    this.state = state;
   }
 
   get template() {
@@ -16,6 +18,7 @@ class OneOfThreeGameView extends AbstractView {
     const stats = new CurrentStatsView();
 
     return `
+    ${new HeaderView(this.state, this.state.time).template}
     <section class="game">
       <p class="game__task">Найдите рисунок среди изображений</p>
       <form class="game__content  game__content--triple">

@@ -7,11 +7,15 @@ const getLevel = (level) => gameDataArray[level];
 class GameModel {
   constructor(playerName) {
     this.playerName = playerName;
-    this.restart();
+    this._state = null;
   }
 
   get state() {
     return this._state;
+  }
+
+  initGame() {
+    this._state = Object.assign({}, INITIAL_STATE);
   }
 
   hasNextLevel() {
@@ -19,7 +23,8 @@ class GameModel {
   }
 
   nextLevel() {
-    this._state = changeLevel(this._state);
+    // this._state = changeLevel(this._state);
+    this._state.level++;
   }
 
   die() {
@@ -36,6 +41,7 @@ class GameModel {
 
   getCurrentLevel() {
     return getLevel(this._state);
+    // console.log(getLevel(this._state));
   }
 
   tick() {

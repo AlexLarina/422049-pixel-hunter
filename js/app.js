@@ -24,8 +24,9 @@ class Application {
 
   showGame(userName) {
     const model = new GameModel(userName);
-    const gameScreen = new GameScreen(model);
+    const gameScreen = new GameScreen(model, this.showStats.bind(this));
     gameScreen.startGame();
+    changeScreen(gameScreen.element);
   }
 
   showStats() {

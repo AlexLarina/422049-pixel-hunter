@@ -11,14 +11,8 @@ class GameStatsScreen {
   }
 
   bind(click) {
-    this.bind.onGreeting = click;
+    this.statsScreen.onGreeting = click;
   }
-
-  /* statsScreen.onGreeting = () => {
-    getGreetingScreen();
-  };
-
-  changeScreen(statsScreen.element);*/
 }
 
 export default GameStatsScreen;

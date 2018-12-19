@@ -1,10 +1,12 @@
 import AbstractView from "./abstract-view";
 import {QuestionWithAnswer} from "./question-view";
 import CurrentStatsView from "./current-stats-view";
+import HeaderView from "./header-view";
 
 class GameTwoOfTwoView extends AbstractView {
-  constructor(level) {
+  constructor(state, level) {
     super();
+    this.state = state;
     this.level = level;
   }
 
@@ -14,6 +16,7 @@ class GameTwoOfTwoView extends AbstractView {
     const stats = new CurrentStatsView();
 
     return `
+    ${new HeaderView(this.state, this.state.time).template}
     <section class="game">
       <p class="game__task">${this.level.question}</p>
       <form class="game__content">

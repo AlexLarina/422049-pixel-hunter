@@ -1,9 +1,9 @@
-const INITIAL_STATE = {
-  time: 30,
+const INITIAL_STATE = Object.freeze({
+  time: 3,
   lives: 3,
   level: 0,
   answers: []
-};
+});
 
 const srcData = {
   paintings: [

@@ -1,10 +1,10 @@
 import AbstractView from "./abstract-view";
 
 class HeaderView extends AbstractView {
-  constructor(state) {
+  constructor(state, time) {
     super();
     this.state = state;
-    this.timer = this.element.querySelector(`game__timer`);
+    this.time = time;
   }
 
   get template() {
@@ -18,7 +18,7 @@ class HeaderView extends AbstractView {
         <use xlink:href="img/sprite.svg#logo-small"></use>
       </svg>
     </button>
-    <div class="game__timer">${this.state.time}</div>
+    <div class="game__timer">${this.time}</div>
     <div class="game__lives">
       ${new Array(3 - this.state.lives)
         .fill(`<img src="img/heart__empty.svg" class="game__heart" alt=" Missed Life" width="31" height="27">`)
@@ -41,9 +41,10 @@ class HeaderView extends AbstractView {
 
   }
 
-  updateTime(time) {
-    this.timer.textContent = time;
-  }
+  /* updateTime(time) {
+    const timer = this.element.querySelector(`.game__timer`);
+    timer.textContent = time;
+  } */
 
 }
 
