@@ -1,11 +1,12 @@
 import HeaderView from "../view/header-view";
-import {chooseGame} from "../game/game";
+import LevelView from "../view/level-view";
+import {changeScreen} from "../game/util";
 
 class GameScreen {
   constructor(model) {
     this.model = model;
     this.header = new HeaderView(this.model.state);
-    this.level = chooseGame(this.model.getCurrentLevel(this.model), this.model.state);
+    this.level = new LevelView(this.model.state, this.model.getCurrentLevel(), this.header);
 
     this._timer = null;
   }
@@ -15,15 +16,22 @@ class GameScreen {
   }
 
   changeLevel() {
-    const level = ;
+    const level = new LevelView(this.model.state, this.model.getCurrentLevel(), this.header);
+    this.level = level;
+    this.updateHeader();
+    level.onSaveAnswer = this.handleAnswer.bind(this);
+    changeScreen(level.element);
   }
 
   updateHeader() {
-
+    const header = new HeaderView(this.model.state);
+    header.element.remove();
+    this.header = header;
+    this.element.insertAdjacentElement(`afterbegin`, this.header);
   }
 
   updateTime() {
-
+    this.header.updateTime(this.model.state.time);
   }
 
   startGame() {
@@ -41,7 +49,7 @@ class GameScreen {
     this._timer = setTimeout(() => this._tick(), 1000);
   }
 
-  answer() {
+  handleAnswer() {
 
   }
 

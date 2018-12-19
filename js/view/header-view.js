@@ -4,6 +4,7 @@ class HeaderView extends AbstractView {
   constructor(state) {
     super();
     this.state = state;
+    this.timer = this.element.querySelector(`game__timer`);
   }
 
   get template() {
@@ -38,6 +39,10 @@ class HeaderView extends AbstractView {
 
   onRestart() {
 
+  }
+
+  updateTime(time) {
+    this.timer.textContent = time;
   }
 
 }
