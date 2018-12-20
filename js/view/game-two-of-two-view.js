@@ -8,11 +8,12 @@ class GameTwoOfTwoView extends AbstractView {
     super();
     this.state = state;
     this.level = level;
+    this._answers = [];
   }
 
   get template() {
     const question1 = new QuestionWithAnswer(this.level.answers[0].image.url, 1);
-    const question2 = new QuestionWithAnswer(this.level.answers[0].image.url, 2);
+    const question2 = new QuestionWithAnswer(this.level.answers[1].image.url, 2);
     const stats = new CurrentStatsView();
 
     return `
@@ -30,15 +31,26 @@ class GameTwoOfTwoView extends AbstractView {
 
   bind() {
     const gameForm = this.element.querySelector(`.game__content`);
-    const answerArray = [];
+    const compareAnswerHash = {
+      paint: `painting`,
+      photo: `photo`
+    };
 
-    gameForm.addEventListener(`change`, () => {
-      const answerData = new FormData(gameForm);
+    const answerData = new FormData(gameForm);
 
+    gameForm.addEventListener(`change`, (evt) => {
+      answerData.set(evt.target.name, evt.target.value);
+      console.log(compareAnswerHash[answerData.getAll(`question1`)[0]]);
       if (answerData.has(`question1`) && answerData.has(`question2`)) {
 
-        answerArray.push(answerData.getAll(`question1`));
-        answerArray.push(answerData.getAll(`question2`));
+        if (compareAnswerHash[answerData.getAll(`question1`)[0]] === this.level.answers[0].type &&
+          compareAnswerHash[answerData.getAll(`question2`)[0]] === this.level.answers[1].type) {
+          this._answers.push(`true`);
+          console.log(`RIGHT ANSWER!`);
+        } else {
+          this._answers.push(`false`);
+          console.log(`WRONG ANSWER!`);
+        }
 
         this.onSaveAnswer();
         this.onGameContinue();

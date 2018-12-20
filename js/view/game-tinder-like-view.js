@@ -8,6 +8,7 @@ class TinderLikeGameView extends AbstractView {
     super();
     this.state = state;
     this.level = level;
+    this._answers = [];
   }
 
   get template() {
@@ -27,13 +28,25 @@ class TinderLikeGameView extends AbstractView {
 
   bind() {
     const gameForm = this.element.querySelector(`.game__content`);
-    const answerArray = [];
+    const compareAnswerHash = {
+      paint: `painting`,
+      photo: `photo`
+    };
 
-    gameForm.addEventListener(`change`, () => {
+    gameForm.addEventListener(`change`, (evt) => {
       const answerData = new FormData(gameForm);
-      if (answerData.has(`question1`)) {
 
-        answerArray.push(answerData.getAll(`question2`));
+      answerData.set(evt.target.name, evt.target.value);
+      console.log(compareAnswerHash[answerData.getAll(`question1`)[0]]);
+
+      if (answerData.has(`question1`)) {
+        if (compareAnswerHash[answerData.getAll(`question1`)[0]] === this.level.answers[0].type) {
+          this._answers.push(`true`);
+          console.log(`RIGHT ANSWER!`);
+        } else {
+          this._answers.push(`false`);
+          console.log(`WRONG ANSWER!`);
+        }
         this.onSaveAnswer();
         this.onGameContinue();
       }

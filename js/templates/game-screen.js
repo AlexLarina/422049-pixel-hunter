@@ -36,16 +36,25 @@ class GameScreen {
       case `two-of-two`:
         console.log(`Two-of-two chosen`);
         gameView = new GameTwoOfTwoView(state, getLevel(state.level));
+        gameView.onSaveAnswer = () => {
+          this.changeLevel(state);
+        };
         console.log(gameView);
         break;
       case `tinder-like`:
         console.log(`Tinder like chosen`);
         gameView = new TinderLikeGameView(state, getLevel(state.level));
+        gameView.onSaveAnswer = () => {
+          this.changeLevel(state);
+        };
         console.log(gameView);
         break;
       case `one-of-three`:
         console.log(`One-of-three chosen`);
         gameView = new OneOfThreeGame(state, getLevel(state.level));
+        gameView.onSaveAnswer = () => {
+          this.changeLevel(state);
+        };
         break;
     }
 
@@ -113,12 +122,12 @@ class GameScreen {
   }
 
   _tick() {
-    console.log(this.model.state.time);
+    // console.log(this.model.state.time);
     if (this.model.state.time) {
       this.model.state.time--;
       this.updateTime();
     } else {
-      console.log(`ChangeLevel should work here!`);
+      // console.log(`ChangeLevel should work here!`);
       this.changeLevel(this.model.state);
       return true;
     }

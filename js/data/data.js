@@ -1,5 +1,5 @@
 const INITIAL_STATE = Object.freeze({
-  time: 3,
+  time: 30,
   lives: 3,
   level: 0,
   answers: []
