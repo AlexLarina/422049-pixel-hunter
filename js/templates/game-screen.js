@@ -5,10 +5,12 @@ import OneOfThreeGame from "../view/game-one-of-three-view";
 import StatsView from "../view/stats-view";
 import {changeScreen} from "../game/util";
 import {changeLevel} from "../game/game_state";
-import {INITIAL_STATE, gameDataArray} from "../data/data";
+import {INITIAL_STATE} from "../data/data";
 import Application from "../app";
 
-const getLevel = (level) => gameDataArray[level];
+const getLevel = (level) => {
+  // return LEVELS_DATA[level];
+};
 
 class GameScreen {
   constructor(model) {
@@ -19,6 +21,12 @@ class GameScreen {
 
   get element() {
     return this.view;
+  }
+
+  startGame() {
+    this.model.initGame();
+    this.updateView();
+    this.startTimer();
   }
 
   updateView() {
@@ -32,39 +40,36 @@ class GameScreen {
     let gameView;
     console.log('getGameView called');
     // console.log(state.level.type);
-    switch (getLevel(state.level).type) {
+    switch (state.levelsData[state.level].type) {
       case `two-of-two`:
         console.log(`Two-of-two chosen`);
-        gameView = new GameTwoOfTwoView(state, getLevel(state.level));
+        gameView = new GameTwoOfTwoView(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = () => {
+          this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
           this.changeLevel(state);
         };
         console.log(gameView);
         break;
       case `tinder-like`:
         console.log(`Tinder like chosen`);
-        gameView = new TinderLikeGameView(state, getLevel(state.level));
+        gameView = new TinderLikeGameView(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = () => {
+          this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
           this.changeLevel(state);
         };
         console.log(gameView);
         break;
       case `one-of-three`:
         console.log(`One-of-three chosen`);
-        gameView = new OneOfThreeGame(state, getLevel(state.level));
+        gameView = new OneOfThreeGame(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = () => {
+          this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
           this.changeLevel(state);
         };
         break;
     }
 
     return gameView.element;
-  }
-
-  startGame() {
-    this.model.initGame();
-    this.updateView();
-    this.startTimer();
   }
 
   changeLevel() {
@@ -77,7 +82,7 @@ class GameScreen {
       this.startTimer();
     } else {
       console.log(`GAME OVER!`);
-      const statsView = new StatsView();
+      const statsView = new StatsView(this.model.state);
       // Application.showStats();
       changeScreen(statsView.element);
     }
@@ -94,10 +99,10 @@ class GameScreen {
   }
 
   isGameOver(state) {
-    if (state.level === gameDataArray.length - 1) {
+    /* if (state.level === gameDataArray.length - 1) {
       return true;
     }
-    return false;
+    return false; */
   }
 
   updateHeader() {
@@ -126,6 +131,7 @@ class GameScreen {
     if (this.model.state.time) {
       this.model.state.time--;
       this.updateTime();
+      this.blick();
     } else {
       // console.log(`ChangeLevel should work here!`);
       this.changeLevel(this.model.state);
@@ -159,6 +165,12 @@ class GameScreen {
 
   endGame() {
 
+  }
+
+  blick() {
+    if (this.model.state.time <= 5) {
+      this.timer.classList.add(`blink`);
+    }
   }
 }
 

@@ -8,13 +8,14 @@ class GameTwoOfTwoView extends AbstractView {
     super();
     this.state = state;
     this.level = level;
-    this._answers = [];
+    // this._answers = [];
+    this.result = null;
   }
 
   get template() {
     const question1 = new QuestionWithAnswer(this.level.answers[0].image.url, 1);
     const question2 = new QuestionWithAnswer(this.level.answers[1].image.url, 2);
-    const stats = new CurrentStatsView();
+    // const stats = new CurrentStatsView();
 
     return `
     ${new HeaderView(this.state, this.state.time).template}
@@ -24,9 +25,13 @@ class GameTwoOfTwoView extends AbstractView {
       ${question1.template}
       ${question2.template}
       </form>
-      ${stats.template}
+      ${new CurrentStatsView(this.state).template}
     </section>
   `;
+  }
+
+  getResult() {
+    return this.result;
   }
 
   bind() {
@@ -45,10 +50,12 @@ class GameTwoOfTwoView extends AbstractView {
 
         if (compareAnswerHash[answerData.getAll(`question1`)[0]] === this.level.answers[0].type &&
           compareAnswerHash[answerData.getAll(`question2`)[0]] === this.level.answers[1].type) {
-          this._answers.push(`true`);
+          // this._answers.push(`true`);
+          this.result = `correct`;
           console.log(`RIGHT ANSWER!`);
         } else {
-          this._answers.push(`false`);
+          // this._answers.push(`false`);
+          this.result = `wrong`;
           console.log(`WRONG ANSWER!`);
         }
 

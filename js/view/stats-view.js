@@ -1,8 +1,11 @@
 import AbstractView from "./abstract-view";
+import CurrentStatsView from "./current-stats-view";
+import {AnswerType, Bonuses} from "../data/data";
 
 class StatsView extends AbstractView {
-  constructor() {
+  constructor(state) {
     super();
+    this.state = state;
   }
 
   get template() {
@@ -25,99 +28,69 @@ class StatsView extends AbstractView {
             <td class="result__number">1.</td>
             <td colspan="2">
               <ul class="stats">
-                <li class="stats__result stats__result--wrong"></li>
-                <li class="stats__result stats__result--slow"></li>
-                <li class="stats__result stats__result--fast"></li>
-                <li class="stats__result stats__result--correct"></li>
-                <li class="stats__result stats__result--wrong"></li>
-                <li class="stats__result stats__result--unknown"></li>
-                <li class="stats__result stats__result--slow"></li>
-                <li class="stats__result stats__result--unknown"></li>
-                <li class="stats__result stats__result--fast"></li>
-                <li class="stats__result stats__result--unknown"></li>
+              ${new CurrentStatsView(this.state).template}
               </ul>
             </td>
             <td class="result__points">× 100</td>
-            <td class="result__total">900</td>
+            <td class="result__total">${this.getTotalScore(this.state.userAnswers)}</td>
           </tr>
           <tr>
             <td></td>
             <td class="result__extra">Бонус за скорость:</td>
-            <td class="result__extra">1 <span class="stats__result stats__result--fast"></span></td>
-            <td class="result__points">× 50</td>
-            <td class="result__total">50</td>
+            <td class="result__extra">${this.getSpeedBonus(this.state.userAnswers)}<span class="stats__result stats__result--fast"></span></td>
+            <td class="result__points">× ${Bonuses.FAST}</td>
+            <td class="result__total">${this.getSpeedBonus(this.state.userAnswers) * Bonuses.FAST}</td>
           </tr>
           <tr>
             <td></td>
             <td class="result__extra">Бонус за жизни:</td>
-            <td class="result__extra">2 <span class="stats__result stats__result--alive"></span></td>
-            <td class="result__points">× 50</td>
-            <td class="result__total">100</td>
+            <td class="result__extra">${this.state.lives}<span class="stats__result stats__result--alive"></span></td>
+            <td class="result__points">× ${Bonuses.LIVES}</td>
+            <td class="result__total">${this.state.lives * Bonuses.LIVES}</td>
           </tr>
           <tr>
             <td></td>
             <td class="result__extra">Штраф за медлительность:</td>
-            <td class="result__extra">2 <span class="stats__result stats__result--slow"></span></td>
-            <td class="result__points">× 50</td>
-            <td class="result__total">-100</td>
+            <td class="result__extra">${this.slowSconce(this.state.userAnswers)} <span class="stats__result stats__result--slow"></span></td>
+            <td class="result__points">× ${Bonuses.SLOW}</td>
+            <td class="result__total">${this.slowSconce(this.state.userAnswers) * Bonuses.SLOW}</td>
           </tr>
           <tr>
-            <td colspan="5" class="result__total  result__total--final">950</td>
-          </tr>
-        </table>
-        <table class="result__table">
-          <tr>
-            <td class="result__number">2.</td>
-            <td>
-              <ul class="stats">
-                <li class="stats__result stats__result--wrong"></li>
-                <li class="stats__result stats__result--slow"></li>
-                <li class="stats__result stats__result--fast"></li>
-                <li class="stats__result stats__result--correct"></li>
-                <li class="stats__result stats__result--wrong"></li>
-                <li class="stats__result stats__result--unknown"></li>
-                <li class="stats__result stats__result--slow"></li>
-                <li class="stats__result stats__result--wrong"></li>
-                <li class="stats__result stats__result--fast"></li>
-                <li class="stats__result stats__result--wrong"></li>
-              </ul>
-            </td>
-            <td class="result__total"></td>
-            <td class="result__total  result__total--final">fail</td>
-          </tr>
-        </table>
-        <table class="result__table">
-          <tr>
-            <td class="result__number">3.</td>
-            <td colspan="2">
-              <ul class="stats">
-                <li class="stats__result stats__result--wrong"></li>
-                <li class="stats__result stats__result--slow"></li>
-                <li class="stats__result stats__result--fast"></li>
-                <li class="stats__result stats__result--correct"></li>
-                <li class="stats__result stats__result--wrong"></li>
-                <li class="stats__result stats__result--unknown"></li>
-                <li class="stats__result stats__result--slow"></li>
-                <li class="stats__result stats__result--unknown"></li>
-                <li class="stats__result stats__result--fast"></li>
-                <li class="stats__result stats__result--unknown"></li>
-              </ul>
-            </td>
-            <td class="result__points">× 100</td>
-            <td class="result__total">900</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td class="result__extra">Бонус за жизни:</td>
-            <td class="result__extra">2 <span class="stats__result stats__result--alive"></span></td>
-            <td class="result__points">× 50</td>
-            <td class="result__total">100</td>
-          </tr>
-          <tr>
-            <td colspan="5" class="result__total  result__total--final">950</td>
+            <td colspan="5" class="result__total  result__total--final">${this.getFinalScore(this.state, this.state.userAnswers)}</td>
           </tr>
         </table>
       </section>`;
+  }
+
+  getTotalScore(answers) {
+    const resultIndex = 1;
+    const correctAnswers = answers.filter((it) => {
+      return it[resultIndex] === `correct`;
+    });
+    return correctAnswers.length * 100;
+  }
+
+  getSpeedBonus(answers) {
+    const timeIndex = 0;
+    const fastAnswers = answers.filter((it) => {
+      return it[timeIndex] < AnswerType.FAST;
+    });
+
+    return fastAnswers.length;
+  }
+
+  slowSconce(answers) {
+    const timeIndex = 0;
+    const fastAnswers = answers.filter((it) => {
+      return it[timeIndex] > AnswerType.SLOW;
+    });
+
+    return fastAnswers.length;
+  }
+
+  getFinalScore(state, answers) {
+    return this.getTotalScore(answers) + this.getSpeedBonus(answers) * Bonuses.FAST
+      + state.lives * Bonuses.LIVES + this.slowSconce(answers) * Bonuses.SLOW;
   }
 
   bind() {

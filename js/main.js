@@ -2,4 +2,4 @@
 import Application from "./app";
 
 const app = new Application();
-app.showIntro();
+app.download();

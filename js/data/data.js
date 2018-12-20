@@ -5,6 +5,17 @@ const INITIAL_STATE = Object.freeze({
   answers: []
 });
 
+const AnswerType = {
+  FAST: 10,
+  SLOW: 20
+};
+
+const Bonuses = {
+  FAST: 50,
+  SLOW: -50,
+  LIVES: 50
+};
+
 const srcData = {
   paintings: [
     // People
@@ -28,7 +39,7 @@ const srcData = {
   ]
 };
 
-const gameDataArray = [
+/* const gameDataArray = [
   {
     "type": `two-of-two`,
     "question": `Угадайте для каждого изображения фото или рисунок?`,
@@ -131,6 +142,6 @@ const gameDataArray = [
       }
     ]
   }
-];
+]; */
 
-export {INITIAL_STATE, srcData, gameDataArray};
+export {INITIAL_STATE, srcData, AnswerType, Bonuses};
