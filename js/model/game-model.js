@@ -28,6 +28,7 @@ class GameModel {
   }
 
   die() {
+    // кажется, это тут не используется
     this._state = die(this._state);
   }
 
