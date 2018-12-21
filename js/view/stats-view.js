@@ -2,6 +2,9 @@ import AbstractView from "./abstract-view";
 import CurrentStatsView from "./current-stats-view";
 import {AnswerType, Bonuses} from "../data/data";
 
+const timeIndex = 0;
+const resultIndex = 1;
+
 class StatsView extends AbstractView {
   constructor(state) {
     super();
@@ -63,7 +66,6 @@ class StatsView extends AbstractView {
   }
 
   getTotalScore(answers) {
-    const resultIndex = 1;
     const correctAnswers = answers.filter((it) => {
       return it[resultIndex] === `correct`;
     });
@@ -71,18 +73,16 @@ class StatsView extends AbstractView {
   }
 
   getSpeedBonus(answers) {
-    const timeIndex = 0;
     const fastAnswers = answers.filter((it) => {
-      return it[timeIndex] < AnswerType.FAST;
+      return it[resultIndex] === `correct` && it[timeIndex] < AnswerType.FAST;
     });
 
     return fastAnswers.length;
   }
 
   slowSconce(answers) {
-    const timeIndex = 0;
     const fastAnswers = answers.filter((it) => {
-      return it[timeIndex] > AnswerType.SLOW;
+      return it[resultIndex] === `correct` && it[timeIndex] > AnswerType.SLOW;
     });
 
     return fastAnswers.length;

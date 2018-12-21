@@ -4,15 +4,16 @@ import RulesScreen from "./templates/rules";
 import GameModel from "./model/game-model";
 import GameScreen from "./templates/game-screen";
 import GameStatsScreen from "./templates/stats";
+import Backend from "./game/backend";
 import {changeScreen} from "./game/util";
 
-const checkStatus = (response) => {
+/* const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
     return response;
   } else {
     throw new Error(`${response.status}: ${response.statusText}`);
   }
-};
+}; */
 
 let LEVELS_DATA;
 
@@ -22,11 +23,12 @@ const getLevelData = (data) => {
 };
 
 class Application {
-
   download() {
-    window.fetch(`https://es.dump.academy/pixel-hunter/questions`).
-    then(checkStatus).
-    then((_response) => _response.json()).
+    // window.fetch(`https://es.dump.academy/pixel-hunter/questions`).
+    // then(checkStatus).
+    // then((_response) => _response.json()).
+    const backend = new Backend();
+    backend.downloadData().
     then((data) => getLevelData(data)).
     then((_response) => this.showIntro()).
     catch(this.showError);
@@ -54,9 +56,14 @@ class Application {
     changeScreen(gameScreen.element);
   }
 
-  showStats() {
+  showStats(state) {
     const statsScreen = new GameStatsScreen(this.showGreeting.bind(this));
-    changeScreen(statsScreen.element);
+    const backend = new Backend();
+    backend.uploadResults(state.previousGames, state.playerName).
+    then(() => backend.downloadResults(state.playerName)).
+    then((data) => changeScreen(statsScreen(data).element)).
+    catch(this.showError);
+    // changeScreen(statsScreen.element);
   }
 
   showError() {

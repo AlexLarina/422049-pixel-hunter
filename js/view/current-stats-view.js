@@ -9,7 +9,6 @@ class CurrentStatsView extends AbstractView {
   }
 
   get template() {
-    // const currentStatsData = new Array(this.levels).fill(`<li class="stats__result stats__result--unknown"></li>`);
     const currentStatsData = this.updateCurrentStats(this.state).concat(
         new Array(this.levels - this.state.level).fill(`<li class="stats__result stats__result--unknown"></li>`)
     );
@@ -21,7 +20,7 @@ class CurrentStatsView extends AbstractView {
 
   updateCurrentStats(state) {
     const alreadyAnsweredArray = [];
-    state.userAnswers.forEach((val, index) => {
+    state.userAnswers.forEach((val) => {
       let answerStatus = this.getAnswerStatus(val);
       alreadyAnsweredArray.push(`<li class="stats__result stats__result--${answerStatus}"></li>`);
     });

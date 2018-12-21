@@ -9,15 +9,12 @@ class OneOfThreeGameView extends AbstractView {
     this.level = level;
     this.state = state;
     this.result = null;
-    // this._answers = [];
   }
 
   get template() {
     const question1 = new Question(this.level.answers[0].image.url, 1);
     const question2 = new Question(this.level.answers[1].image.url, 2);
     const question3 = new Question(this.level.answers[2].image.url, 3);
-
-    // const stats = new CurrentStatsView();
 
     return `
     ${new HeaderView(this.state, this.state.time).template}
@@ -41,15 +38,12 @@ class OneOfThreeGameView extends AbstractView {
 
     answerForm.addEventListener(`click`, (evt) => {
       const answerNumber = evt.target.alt.split(` `)[1];
-      console.log(this.level.answers[answerNumber - 1].type);
+      // console.log(this.level.answers[answerNumber - 1].type);
       if (this.level.answers[answerNumber - 1].type === `painting`) {
-        // this._answers.push(`true`);
         this.result = `correct`;
       } else {
-        // this._answers.push(`false`);
         this.result = `wrong`;
       }
-      // answerArray.push(evt.target.src);
       this.onSaveAnswer();
       this.onGameContinue();
     });

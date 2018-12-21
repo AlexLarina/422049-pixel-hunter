@@ -8,13 +8,11 @@ class TinderLikeGameView extends AbstractView {
     super();
     this.state = state;
     this.level = level;
-    // this._answers = [];
     this.result = null;
   }
 
   get template() {
     const question = new QuestionWithAnswer(this.level.answers[0].image.url, 1);
-    // const stats = new CurrentStatsView();
 
     return `
     ${new HeaderView(this.state, this.state.time).template}
@@ -42,17 +40,15 @@ class TinderLikeGameView extends AbstractView {
       const answerData = new FormData(gameForm);
 
       answerData.set(evt.target.name, evt.target.value);
-      console.log(compareAnswerHash[answerData.getAll(`question1`)[0]]);
+      // console.log(compareAnswerHash[answerData.getAll(`question1`)[0]]);
 
       if (answerData.has(`question1`)) {
         if (compareAnswerHash[answerData.getAll(`question1`)[0]] === this.level.answers[0].type) {
-          // this._answers.push(`true`);
           this.result = `correct`;
-          console.log(`RIGHT ANSWER!`);
+          // console.log(`RIGHT ANSWER!`);
         } else {
           this.result = `wrong`;
-          // this._answers.push(`false`);
-          console.log(`WRONG ANSWER!`);
+          // console.log(`WRONG ANSWER!`);
         }
         this.onSaveAnswer();
         this.onGameContinue();

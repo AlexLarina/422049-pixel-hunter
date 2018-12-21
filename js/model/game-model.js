@@ -1,8 +1,16 @@
-import {INITIAL_STATE, gameDataArray} from "../data/data";
-import {changeLevel, die} from "../game/game_state";
+import {INITIAL_STATE, AnswerType} from "../data/data";
+import {die} from "../game/game_state";
 import tick from "../game/timer";
 
-// const getLevel = (level) => gameDataArray[level];
+const Result = {
+  CORRECT: `correct`,
+  WRONG: `wrong`,
+  FAST: `fast`,
+  SLOW: `slow`
+};
+
+const timeIndex = 0;
+const resultIndex = 1;
 
 class GameModel {
   constructor(playerName, data) {
@@ -26,11 +34,9 @@ class GameModel {
 
   hasNextLevel() {
     return this.levelsData[this._state.level + 1] !== void 0;
-    // return getLevel(this._state.level + 1) !== void 0;
   }
 
   nextLevel() {
-    // this._state = changeLevel(this._state);
     this._state.level++;
   }
 
@@ -47,13 +53,32 @@ class GameModel {
     return this._state.lives <= 0;
   }
 
-  getCurrentLevel() {
-    // return getLevel(this._state);
-    // console.log(getLevel(this._state));
-  }
-
   tick() {
     this._state = tick(this._state);
+  }
+
+  handleStats() {
+    const resultToUpload = [];
+    this._state.userAnswers.forEach((element) => {
+      switch (true) {
+        case (element[resultIndex] === `wrong`):
+          resultToUpload.push(Result.WRONG);
+          break;
+        case (element[resultIndex] === `correct` && element[timeIndex] <= AnswerType.SLOW && element[timeIndex] >= AnswerType.FAST):
+          resultToUpload.push(Result.CORRECT);
+          break;
+        case (element[resultIndex] === `correct` && element[timeIndex] > AnswerType.SLOW):
+          resultToUpload.push(Result.SLOW);
+          break;
+        case (element[resultIndex] === `correct` && element[timeIndex] < AnswerType.FAST):
+          resultToUpload.push(Result.FAST);
+          break;
+        default:
+          resultToUpload.push(Result.WRONG);
+      }
+    });
+
+    return resultToUpload;
   }
 }
 
