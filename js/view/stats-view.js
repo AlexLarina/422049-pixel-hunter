@@ -33,7 +33,7 @@ class StatsView extends AbstractView {
       
       </section>`;
   }
-  
+
   bind() {
     const backButton = this.element.querySelector(`.back`);
     backButton.addEventListener(`click`, () => {
