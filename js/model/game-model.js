@@ -13,8 +13,8 @@ const timeIndex = 0;
 const resultIndex = 1;
 
 class GameModel {
-  constructor(userName, data) {
-    this.userName = userName;
+  constructor(user, data) {
+    this.user = user;
     this._state = null;
     this.levelsData = data;
   }
@@ -26,6 +26,7 @@ class GameModel {
   initGame() {
     this._state = Object.assign({}, INITIAL_STATE, {userAnswers: []});
     this._state.levelsData = this.levelsData;
+    this._state.userName = this.user;
   }
 
   acceptAnswer(spentTime, result) {
