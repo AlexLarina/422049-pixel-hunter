@@ -35,6 +35,7 @@ class OneOfThreeGameView extends AbstractView {
   }
 
   bind() {
+    const backButton = this.element.querySelector(`.back`);
     const answerForm = this.element.querySelector(`.game__content`);
 
     answerForm.addEventListener(`click`, (evt) => {
@@ -49,6 +50,12 @@ class OneOfThreeGameView extends AbstractView {
       this.onSaveAnswer();
       this.onGameContinue();
     });
+
+    backButton.addEventListener(`click`, (evt) => {
+      evt.preventDefault();
+      console.log(`From level screen clicked!`);
+      this.onRestart();
+    });
   }
 
   onSaveAnswer() {
@@ -56,6 +63,10 @@ class OneOfThreeGameView extends AbstractView {
   }
 
   onGameContinue() {
+
+  }
+
+  onRestart() {
 
   }
 }

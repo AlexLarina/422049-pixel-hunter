@@ -5,6 +5,7 @@ import OneOfThreeGame from "../view/game-one-of-three-view";
 import StatsView from "../view/stats-view";
 import {changeScreen} from "../game/util";
 import {INITIAL_STATE} from "../data/data";
+import Application from "../app";
 
 class GameScreen {
   constructor(model) {
@@ -43,6 +44,9 @@ class GameScreen {
           this.model.die();
           this.changeLevel(state);
         };
+        gameView.onRestart = () => {
+          Application.showGreeting();
+        };
         // console.log(gameView);
         break;
       case `tinder-like`:
@@ -53,6 +57,9 @@ class GameScreen {
           this.model.die();
           this.changeLevel(state);
         };
+        gameView.onRestart = () => {
+          Application.showGreeting();
+        };
         // console.log(gameView);
         break;
       case `one-of-three`:
@@ -62,6 +69,9 @@ class GameScreen {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
           this.model.die();
           this.changeLevel(state);
+        };
+        gameView.onRestart = () => {
+          Application.showGreeting();
         };
         break;
     }
@@ -79,8 +89,9 @@ class GameScreen {
       this.startTimer();
     } else {
       // console.log(`GAME OVER!`);
-      const statsView = new StatsView(this.model.state);
-      changeScreen(statsView.element);
+      // const statsView = new StatsView(this.model.state);
+      // changeScreen(statsView.element);
+      Application.showStats(this.model.state);
     }
   }
 

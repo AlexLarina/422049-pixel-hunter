@@ -34,6 +34,7 @@ class GameTwoOfTwoView extends AbstractView {
   }
 
   bind() {
+    const backButton = this.element.querySelector(`.back`);
     const gameForm = this.element.querySelector(`.game__content`);
     const compareAnswerHash = {
       paint: `painting`,
@@ -62,6 +63,12 @@ class GameTwoOfTwoView extends AbstractView {
         gameForm.reset();
       }
     });
+
+    backButton.addEventListener(`click`, (evt) => {
+      evt.preventDefault();
+      console.log(`From level screen clicked!`);
+      this.onRestart();
+    });
   }
 
   onSaveAnswer() {
@@ -69,6 +76,10 @@ class GameTwoOfTwoView extends AbstractView {
   }
 
   onGameContinue() {
+
+  }
+
+  onRestart() {
 
   }
 }

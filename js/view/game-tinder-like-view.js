@@ -31,6 +31,7 @@ class TinderLikeGameView extends AbstractView {
   }
 
   bind() {
+    const backButton = this.element.querySelector(`.back`);
     const gameForm = this.element.querySelector(`.game__content`);
     const compareAnswerHash = {
       paint: `painting`,
@@ -56,6 +57,12 @@ class TinderLikeGameView extends AbstractView {
         this.onGameContinue();
       }
     });
+
+    backButton.addEventListener(`click`, (evt) => {
+      evt.preventDefault();
+      console.log(`From level screen clicked!`);
+      this.onRestart();
+    });
   }
 
   onSaveAnswer() {
@@ -63,6 +70,10 @@ class TinderLikeGameView extends AbstractView {
   }
 
   onGameContinue() {
+
+  }
+
+  onRestart() {
 
   }
 }

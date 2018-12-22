@@ -96,6 +96,7 @@ class StatsView extends AbstractView {
   bind() {
     const backButton = this.element.querySelector(`.back`);
     backButton.addEventListener(`click`, () => {
+      console.log(`From stats backbutton clicked!`);
       this.onGreeting();
     });
   }
