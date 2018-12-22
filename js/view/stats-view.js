@@ -6,11 +6,16 @@ import PreviousRound from "./previous-round-view";
 const timeIndex = 0;
 const resultIndex = 1;
 
+const AnswerTypeScore = {
+  wrong: 0,
+  correct: 100,
+  fast: 150,
+  slow: 50
+};
+
 class StatsView extends AbstractView {
-  constructor(state, data) {
+  constructor() {
     super();
-    this.state = state;
-    this.data = data;
   }
 
   get template() {
@@ -27,44 +32,7 @@ class StatsView extends AbstractView {
         </button>
       </header>
       <section class="result">
-        <h2 class="result__title">Победа!</h2>
-        <table class="result__table">
-          <tr>
-            <td class="result__number">1.</td>
-            <td colspan="2">
-              <ul class="stats">
-              ${new CurrentStatsView(this.state).template}
-              </ul>
-            </td>
-            <td class="result__points">× 100</td>
-            <td class="result__total">${this.getTotalScore(this.state.userAnswers)}</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td class="result__extra">Бонус за скорость:</td>
-            <td class="result__extra">${this.getSpeedBonus(this.state.userAnswers)}<span class="stats__result stats__result--fast"></span></td>
-            <td class="result__points">× ${Bonuses.FAST}</td>
-            <td class="result__total">${this.getSpeedBonus(this.state.userAnswers) * Bonuses.FAST}</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td class="result__extra">Бонус за жизни:</td>
-            <td class="result__extra">${this.state.lives}<span class="stats__result stats__result--alive"></span></td>
-            <td class="result__points">× ${Bonuses.LIVES}</td>
-            <td class="result__total">${this.state.lives * Bonuses.LIVES}</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td class="result__extra">Штраф за медлительность:</td>
-            <td class="result__extra">${this.slowSconce(this.state.userAnswers)} <span class="stats__result stats__result--slow"></span></td>
-            <td class="result__points">× ${Bonuses.SLOW}</td>
-            <td class="result__total">${this.slowSconce(this.state.userAnswers) * Bonuses.SLOW}</td>
-          </tr>
-          <tr>
-            <td colspan="5" class="result__total  result__total--final">${this.getFinalScore(this.state, this.state.userAnswers)}</td>
-          </tr>
-        </table>
-        ${new PreviousRound(this.data).template}
+      
       </section>`;
   }
 
@@ -108,6 +76,63 @@ class StatsView extends AbstractView {
 
   }
 
+  showPreviousGamesStats(data) {
+    /* let total;
+    if (!this.restLives(data)) {
+      total = ``;
+    } else {
+      total = data.stats.reduce((accumulator, currentValue) => {
+        return accumulator + AnswerTypeScore[currentValue];
+      });
+    }
+    return total; */
+    const table = this.getResult(data);
+    const resultElement = this.element.querySelector(`.result`);
+    resultElement.innerHTML = table;
+  }
+
+  restLives(data) {
+    return data.lives;
+  }
+
+  getResult(result) {
+    result = result.reverse();
+    return `<h2 class="result__title">${result[0].lives > 0 ? `Победа` : `Поражение`}!</h2>
+    ${this.getResultTable(result)}`;
+  }
+
+  getResultTable(result) {
+    result = result.reverse();
+    return result.map((res, index) => `<table class="result__table"><tr>
+        <td class="result__number">${index + 1}.</td>
+          <td>
+          ${this.statsRow(res, index)}
+          </td>
+          <td class="result__total"></td>
+          <td class="result__total  result__total--final">fail</td>
+          </tr></table>`
+    ).join(``);
+  }
+
+  statsRow(result, i) {
+    return `<tr>
+        <td class="result__number">${i + 1}.</td>
+          <td>
+          ${this.renderStats(result.stats)}
+          </td>
+          <td class="result__total"></td>
+          <td class="result__total  result__total--final">fail</td>
+          </tr>`;
+  }
+
+  renderStats(answers) {
+    return `<ul class="stats">
+       ${answers.map((answer) =>
+    `<li class="stats__result stats__result--${answer}"></li>`).join(``)}
+       ${new Array(10 - answers.length)
+      .fill(`<li class="stats__result stats__result--unknown"></li>`).join(``)}
+         </ul>`;
+  }
 }
 
 export default StatsView;

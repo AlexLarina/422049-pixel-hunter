@@ -1,12 +1,5 @@
 import AbstractView from "./abstract-view";
 
-const AnswerTypeScore = {
-  wrong: 0,
-  correct: 100,
-  fast: 150,
-  slow: 50
-};
-
 class PreviousRound extends AbstractView {
   constructor(data) {
     super();
@@ -36,23 +29,6 @@ class PreviousRound extends AbstractView {
       </tr>
     </table>`;
   }
-
-  countScore(data) {
-    let total;
-    if (!this.restLives(data)) {
-      total = ``;
-    } else {
-      total = data.stats.reduce((accumulator, currentValue) => {
-        return accumulator + AnswerTypeScore[currentValue];
-      });
-    }
-    return total;
-  }
-
-  restLives(data) {
-    return data.lives;
-  }
-
 }
 
 export default PreviousRound;

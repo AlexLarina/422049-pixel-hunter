@@ -61,12 +61,13 @@ class Application {
     //const previousGames = Backend.downloadResults(state.playerName);
     //console.log(`previousGames[0]:`);
     //console.log(previousGames[0]);
-    // const statsScreen = new GameStatsScreen(data, state, this.showGreeting.bind(this));
+    const statsScreen = new GameStatsScreen(state, this.showGreeting.bind(this));
+    changeScreen(statsScreen.element);
 
     // const backend = new Backend();
     Backend.uploadResults(state.previousGames, state.playerName).
     then(() => Backend.downloadResults(state.playerName)).
-    then(() => changeScreen(new GameStatsScreen(Backend.downloadResults(state.playerName)[0], state, this.showGreeting.bind(this)).element)).
+    then((data) => statsScreen.showPreviousGamesStats(data)).
     catch(this.showError);
     // changeScreen(statsScreen.element);
   }
