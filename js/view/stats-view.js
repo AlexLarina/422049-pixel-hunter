@@ -103,14 +103,9 @@ class StatsView extends AbstractView {
 
   getResultTable(result) {
     result = result.reverse();
-    return result.map((res, index) => `<table class="result__table"><tr>
-        <td class="result__number">${index + 1}.</td>
-          <td>
+    return result.map((res, index) => `<table class="result__table">
           ${this.statsRow(res, index)}
-          </td>
-          <td class="result__total"></td>
-          <td class="result__total  result__total--final">fail</td>
-          </tr></table>`
+          </table>`
     ).join(``);
   }
 
@@ -120,9 +115,93 @@ class StatsView extends AbstractView {
           <td>
           ${this.renderStats(result.stats)}
           </td>
-          <td class="result__total"></td>
-          <td class="result__total  result__total--final">fail</td>
+          ${this.getResultTotal(result)}
+          ${this.transcriptScore(result)}
+          <td class="result__total  result__total--final">${this.getFinal(result)}</td>
           </tr>`;
+  }
+
+  getResultTotal(result) {
+    return (this.isWin(result)) ? `<td class="result__points">× 100</td>
+        <td class="result__total">${this.countScore(result)}</td>` : `<td class="result__total"></td>`;
+  }
+
+  countScore(result) {
+    let total;
+    total = result.stats.reduce((accumulator, currentValue) => {
+      return currentValue === `correct` && (accumulator + AnswerTypeScore[currentValue]);
+      // return accumulator + AnswerTypeScore[currentValue];
+    });
+
+    total += result.lives * 50;
+
+    return total;
+  }
+
+  transcriptScore(result) {
+    if (this.isWin(result)) {
+      return `<tr>
+      <td></td>
+      <td class="result__extra">Бонус за скорость:</td>
+      <td class="result__extra">${this.countFast(result.stats)} <span class="stats__result stats__result--fast"></span></td>
+      <td class="result__points">× 50</td>
+      <td class="result__total">${this.countFast(result.stats) * 50}</td>
+        </tr>
+        <tr>
+        <td></td>
+        <td class="result__extra">Бонус за жизни:</td>
+      <td class="result__extra">${result.lives} <span class="stats__result stats__result--alive"></span></td>
+      <td class="result__points">× 50</td>
+      <td class="result__total">${this.countLives(result)}</td>
+        </tr>
+        <tr>
+        <td></td>
+        <td class="result__extra">Штраф за медлительность:</td>
+      <td class="result__extra">${this.countSlow(result.stats)} <span class="stats__result stats__result--slow"></span></td>
+      <td class="result__points">× 50</td>
+      <td class="result__total">${this.countSlow(result.stats) * (-50)}</td>
+        </tr>`;
+    }
+
+    return ``;
+  }
+
+  isWin(result) {
+    return result.lives > 0;
+  }
+
+  countFast(stats) {
+    let num = 0;
+    stats.forEach((it) => {
+      if (it === `fast`) {
+        num++;
+      }
+    });
+
+    return num;
+  }
+
+  countSlow(stats) {
+    let num = 0;
+    stats.forEach((it) => {
+      if (it === `slow`) {
+        num++;
+      }
+    });
+
+    return num;
+  }
+
+  countLives(result) {
+    return result.lives * 50;
+  }
+
+  getFinal(result) {
+    if (!this.isWin(result)) {
+      return `fail`;
+    } else {
+      return this.countScore(result) + this.countSlow(result) + this.countFast(result) + this.countLives(result);
+    }
   }
 
   renderStats(answers) {

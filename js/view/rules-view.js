@@ -47,7 +47,7 @@ class RulesView extends AbstractView {
 
     rulesForm.addEventListener(`submit`, (event) => {
       event.preventDefault();
-      this.onGameStart();
+      this.onGameStart(rulesInput.value);
     });
 
     const backButton = this.element.querySelector(`.back`);
@@ -63,10 +63,10 @@ class RulesView extends AbstractView {
 
   }
 
-  getName() {
+  /* getName() {
     const rulesInput = this.element.querySelector(`.rules__input`);
     return rulesInput.value;
-  }
+  }*/
 
 }
 

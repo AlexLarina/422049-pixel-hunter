@@ -4,11 +4,9 @@ class RulesScreen {
   constructor(funcBack, funcForward) {
     this.rulesScreen = new RulesView();
     this.bind(funcBack, funcForward);
-    this.userName = null;
   }
 
   get element() {
-    this.userName = this.rulesScreen.getName();
     return this.rulesScreen.element;
   }
 

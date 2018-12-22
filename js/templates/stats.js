@@ -1,7 +1,8 @@
 import StatsView from "../view/stats-view";
 
 class GameStatsScreen {
-  constructor(click) {
+  constructor(state, click) {
+    this.state = state;
     this.statsScreen = new StatsView();
     this.bind(click);
   }
