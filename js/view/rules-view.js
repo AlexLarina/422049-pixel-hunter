@@ -63,6 +63,11 @@ class RulesView extends AbstractView {
 
   }
 
+  getName() {
+    const rulesInput = this.element.querySelector(`.rules__input`);
+    return rulesInput.value;
+  }
+
 }
 
 export default RulesView;
