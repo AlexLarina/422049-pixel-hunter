@@ -2,6 +2,7 @@ import AbstractView from "./abstract-view";
 import {Question} from "./question-view";
 import CurrentStatsView from "./current-stats-view";
 import HeaderView from "./header-view";
+import {die} from "../game/game_state";
 
 class OneOfThreeGameView extends AbstractView {
   constructor(state, level) {
@@ -43,6 +44,7 @@ class OneOfThreeGameView extends AbstractView {
         this.result = `correct`;
       } else {
         this.result = `wrong`;
+        die(this.state);
       }
       this.onSaveAnswer();
       this.onGameContinue();

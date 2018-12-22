@@ -18,7 +18,7 @@ const changeLevel = (state) => {
 };
 
 const canContinue = (state) => {
-  return state.level < LAST_LEVEL;
+  return state.lives > 0;
 };
 
 const die = (state) => {

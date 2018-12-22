@@ -40,12 +40,6 @@ class HeaderView extends AbstractView {
   onRestart() {
 
   }
-
-  /* updateTime(time) {
-    const timer = this.element.querySelector(`.game__timer`);
-    timer.textContent = time;
-  } */
-
 }
 
 export default HeaderView;

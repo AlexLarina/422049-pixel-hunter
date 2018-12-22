@@ -2,6 +2,7 @@ import AbstractView from "./abstract-view";
 import {QuestionWithAnswer} from "./question-view";
 import CurrentStatsView from "./current-stats-view";
 import HeaderView from "./header-view";
+import {die} from "../game/game_state";
 
 class GameTwoOfTwoView extends AbstractView {
   constructor(state, level) {
@@ -52,6 +53,7 @@ class GameTwoOfTwoView extends AbstractView {
           // console.log(`RIGHT ANSWER!`);
         } else {
           this.result = `wrong`;
+          die(this.state);
           // console.log(`WRONG ANSWER!`);
         }
 

@@ -40,6 +40,7 @@ class GameScreen {
         gameView = new GameTwoOfTwoView(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = () => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
+          this.model.die();
           this.changeLevel(state);
         };
         // console.log(gameView);
@@ -49,6 +50,7 @@ class GameScreen {
         gameView = new TinderLikeGameView(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = () => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
+          this.model.die();
           this.changeLevel(state);
         };
         // console.log(gameView);
@@ -58,6 +60,7 @@ class GameScreen {
         gameView = new OneOfThreeGame(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = () => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
+          this.model.die();
           this.changeLevel(state);
         };
         break;
@@ -69,7 +72,7 @@ class GameScreen {
   changeLevel() {
     this.stopTimer();
     this.resetTimer();
-    if (this.model.hasNextLevel()) {
+    if (this.model.hasNextLevel() && (!this.model.isDead())) {
       this.model.nextLevel();
       this.updateView();
       changeScreen(this.element);
