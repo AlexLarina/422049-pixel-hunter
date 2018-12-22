@@ -45,7 +45,7 @@ class GameModel {
   }
 
   isDead() {
-    return this._state.lives <= 0;
+    return this._state.lives < 0;
   }
 
   handleStats() {

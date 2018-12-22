@@ -1,5 +1,5 @@
 const canContinue = (state) => {
-  return state.lives > 0;
+  return state.lives >= 0;
 };
 
 const die = (state) => {
