@@ -1,14 +1,16 @@
 import AbstractView from "./abstract-view";
 import CurrentStatsView from "./current-stats-view";
 import {AnswerType, Bonuses} from "../data/data";
+import PreviousRound from "./previous-round-view";
 
 const timeIndex = 0;
 const resultIndex = 1;
 
 class StatsView extends AbstractView {
-  constructor(state) {
+  constructor(state, data) {
     super();
     this.state = state;
+    this.data = data;
   }
 
   get template() {
@@ -62,6 +64,7 @@ class StatsView extends AbstractView {
             <td colspan="5" class="result__total  result__total--final">${this.getFinalScore(this.state, this.state.userAnswers)}</td>
           </tr>
         </table>
+        ${new PreviousRound(this.data).template}
       </section>`;
   }
 

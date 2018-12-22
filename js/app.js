@@ -27,8 +27,8 @@ class Application {
     // window.fetch(`https://es.dump.academy/pixel-hunter/questions`).
     // then(checkStatus).
     // then((_response) => _response.json()).
-    const backend = new Backend();
-    backend.downloadData().
+    // const backend = new Backend();
+    Backend.downloadData().
     then((data) => getLevelData(data)).
     then((_response) => this.showIntro()).
     catch(this.showError);
@@ -58,13 +58,17 @@ class Application {
 
   static showStats(state) {
     // const statsView = new StatsView(this.model.state);
-    const statsScreen = new GameStatsScreen(state, this.showGreeting.bind(this));
-    /* const backend = new Backend();
-    backend.uploadResults(state.previousGames, state.playerName).
-    then(() => backend.downloadResults(state.playerName)).
-    then((data) => changeScreen(statsScreen.element)).
-    catch(this.showError); */
-    changeScreen(statsScreen.element);
+    //const previousGames = Backend.downloadResults(state.playerName);
+    //console.log(`previousGames[0]:`);
+    //console.log(previousGames[0]);
+    // const statsScreen = new GameStatsScreen(data, state, this.showGreeting.bind(this));
+
+    // const backend = new Backend();
+    Backend.uploadResults(state.previousGames, state.playerName).
+    then(() => Backend.downloadResults(state.playerName)).
+    then(() => changeScreen(new GameStatsScreen(Backend.downloadResults(state.playerName)[0], state, this.showGreeting.bind(this)).element)).
+    catch(this.showError);
+    // changeScreen(statsScreen.element);
   }
 
   static showError() {

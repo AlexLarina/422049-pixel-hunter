@@ -12,19 +12,22 @@ const checkStatus = (response) => {
 const toJSON = (res) => res.json();
 
 class Backend {
-  downloadData() {
+  static downloadData() {
     return fetch(`${URL}/questions`).
     then(checkStatus).
     then(toJSON);
   }
 
-  downloadResults(name) {
-    return fetch(`${URL}/stats/:${APP_ID}-:${name}`).
+  static downloadResults(name) {
+    console.log(`С сервера приходит: `);
+    const prevRes = fetch(`${URL}/stats/:${APP_ID}-:${name}`).
     then(checkStatus).
     then(toJSON);
+    console.log(prevRes);
+    return prevRes;
   }
 
-  uploadResults(data, name) {
+  static uploadResults(data, name) {
     const requestSettings = {
       body: JSON.stringify(data),
       headers: {

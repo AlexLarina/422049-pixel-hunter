@@ -91,6 +91,8 @@ class GameScreen {
       // console.log(`GAME OVER!`);
       // const statsView = new StatsView(this.model.state);
       // changeScreen(statsView.element);
+      this.saveGameStats(this.model.state);
+      console.log(`Надо показать статистику!`);
       Application.showStats(this.model.state);
     }
   }
