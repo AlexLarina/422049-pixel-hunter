@@ -53,7 +53,7 @@ class OneOfThreeGameView extends AbstractView {
 
     backButton.addEventListener(`click`, (evt) => {
       evt.preventDefault();
-      console.log(`From level screen clicked!`);
+      // console.log(`From level screen clicked!`);
       this.onRestart();
     });
   }

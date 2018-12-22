@@ -78,8 +78,8 @@ class GameModel {
           resultToUpload.push(Result.WRONG);
       }
     });
-    console.log(`На сервер уедет вот такая штука: `);
-    console.log(resultToUpload);
+    // console.log(`На сервер уедет вот такая штука: `);
+    // console.log(resultToUpload);
     return resultToUpload;
   }
 }

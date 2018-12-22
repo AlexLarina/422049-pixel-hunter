@@ -2,7 +2,6 @@ import HeaderView from "../view/header-view";
 import GameTwoOfTwoView from "../view/game-two-of-two-view";
 import TinderLikeGameView from "../view/game-tinder-like-view";
 import OneOfThreeGame from "../view/game-one-of-three-view";
-import StatsView from "../view/stats-view";
 import {changeScreen} from "../game/util";
 import {INITIAL_STATE} from "../data/data";
 import Application from "../app";
@@ -92,7 +91,7 @@ class GameScreen {
       // const statsView = new StatsView(this.model.state);
       // changeScreen(statsView.element);
       this.saveGameStats(this.model.state);
-      console.log(`Надо показать статистику!`);
+      // console.log(`Надо показать статистику!`);
       Application.showStats(this.model.state);
     }
   }

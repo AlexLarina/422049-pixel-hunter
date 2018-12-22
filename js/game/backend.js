@@ -19,11 +19,11 @@ class Backend {
   }
 
   static downloadResults(name) {
-    console.log(`С сервера приходит: `);
+    // console.log(`С сервера приходит: `);
     const prevRes = fetch(`${URL}/stats/:${APP_ID}-:${name}`).
     then(checkStatus).
     then(toJSON);
-    console.log(prevRes);
+    // console.log(prevRes);
     return prevRes;
   }
 

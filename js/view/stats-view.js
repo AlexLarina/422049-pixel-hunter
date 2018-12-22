@@ -1,7 +1,5 @@
 import AbstractView from "./abstract-view";
-import CurrentStatsView from "./current-stats-view";
 import {AnswerType, Bonuses} from "../data/data";
-import PreviousRound from "./previous-round-view";
 
 const timeIndex = 0;
 const resultIndex = 1;
@@ -67,7 +65,7 @@ class StatsView extends AbstractView {
   bind() {
     const backButton = this.element.querySelector(`.back`);
     backButton.addEventListener(`click`, () => {
-      console.log(`From stats backbutton clicked!`);
+      // console.log(`From stats backbutton clicked!`);
       this.onGreeting();
     });
   }
@@ -77,22 +75,9 @@ class StatsView extends AbstractView {
   }
 
   showPreviousGamesStats(data) {
-    /* let total;
-    if (!this.restLives(data)) {
-      total = ``;
-    } else {
-      total = data.stats.reduce((accumulator, currentValue) => {
-        return accumulator + AnswerTypeScore[currentValue];
-      });
-    }
-    return total; */
     const table = this.getResult(data);
     const resultElement = this.element.querySelector(`.result`);
     resultElement.innerHTML = table;
-  }
-
-  restLives(data) {
-    return data.lives;
   }
 
   getResult(result) {

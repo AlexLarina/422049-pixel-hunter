@@ -57,19 +57,13 @@ class Application {
   }
 
   static showStats(state) {
-    // const statsView = new StatsView(this.model.state);
-    //const previousGames = Backend.downloadResults(state.playerName);
-    //console.log(`previousGames[0]:`);
-    //console.log(previousGames[0]);
     const statsScreen = new GameStatsScreen(state, this.showGreeting.bind(this));
     changeScreen(statsScreen.element);
 
-    // const backend = new Backend();
     Backend.uploadResults(state.previousGames, state.userName).
     then(() => Backend.downloadResults(state.userName)).
     then((data) => statsScreen.showPreviousGamesStats(data)).
     catch(this.showError);
-    // changeScreen(statsScreen.element);
   }
 
   static showError() {
