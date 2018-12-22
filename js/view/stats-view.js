@@ -1,8 +1,4 @@
 import AbstractView from "./abstract-view";
-import {AnswerType} from "../data/data";
-
-const timeIndex = 0;
-const resultIndex = 1;
 
 const AnswerTypeScore = {
   wrong: 0,
