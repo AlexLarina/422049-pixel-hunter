@@ -1,5 +1,5 @@
 import AbstractView from "./abstract-view";
-import {AnswerType, Bonuses} from "../data/data";
+import {AnswerType} from "../data/data";
 
 const timeIndex = 0;
 const resultIndex = 1;
@@ -33,30 +33,7 @@ class StatsView extends AbstractView {
       
       </section>`;
   }
-
-  getTotalScore(answers) {
-    const correctAnswers = answers.filter((it) => {
-      return it[resultIndex] === `correct`;
-    });
-    return correctAnswers.length * 100;
-  }
-
-  getSpeedBonus(answers) {
-    const fastAnswers = answers.filter((it) => {
-      return it[resultIndex] === `correct` && it[timeIndex] < AnswerType.FAST;
-    });
-
-    return fastAnswers.length;
-  }
-
-  slowSconce(answers) {
-    const fastAnswers = answers.filter((it) => {
-      return it[resultIndex] === `correct` && it[timeIndex] > AnswerType.SLOW;
-    });
-
-    return fastAnswers.length;
-  }
-
+  
   bind() {
     const backButton = this.element.querySelector(`.back`);
     backButton.addEventListener(`click`, () => {

@@ -2,7 +2,6 @@ import AbstractView from "./abstract-view";
 import {Question} from "./question-view";
 import CurrentStatsView from "./current-stats-view";
 import HeaderView from "./header-view";
-import {die} from "../game/game_state";
 
 class OneOfThreeGameView extends AbstractView {
   constructor(state, level) {
@@ -40,22 +39,18 @@ class OneOfThreeGameView extends AbstractView {
 
     answerForm.addEventListener(`click`, (evt) => {
       const answerNumber = evt.target.alt.split(` `)[1];
-      // console.log(this.level.answers[answerNumber - 1].type);
       if (this.level.answers[answerNumber - 1].type === `painting`) {
         this.result = `correct`;
         this.onSaveAnswer(true);
       } else {
         this.result = `wrong`;
         this.onSaveAnswer(false);
-        // die(this.state);
       }
-      // this.onSaveAnswer();
       this.onGameContinue();
     });
 
     backButton.addEventListener(`click`, (evt) => {
       evt.preventDefault();
-      // console.log(`From level screen clicked!`);
       this.onRestart();
     });
   }

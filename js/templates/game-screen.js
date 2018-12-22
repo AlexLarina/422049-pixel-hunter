@@ -26,17 +26,12 @@ class GameScreen {
   updateView() {
     this.view = this.getGameView(this.model.state);
     this.timer = this.view.querySelector(`.game__timer`);
-    // console.log(this.model.state);
-    // console.log(this.getGameView(this.model.state));
   }
 
   getGameView(state) {
     let gameView;
-    // console.log('getGameView called');
-    // console.log(state.level.type);
     switch (state.levelsData[state.level].type) {
       case `two-of-two`:
-        // console.log(`Two-of-two chosen`);
         gameView = new GameTwoOfTwoView(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = (correct) => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
@@ -48,10 +43,8 @@ class GameScreen {
         gameView.onRestart = () => {
           Application.showGreeting();
         };
-        // console.log(gameView);
         break;
       case `tinder-like`:
-        // console.log(`Tinder like chosen`);
         gameView = new TinderLikeGameView(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = (correct) => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
@@ -63,10 +56,8 @@ class GameScreen {
         gameView.onRestart = () => {
           Application.showGreeting();
         };
-        // console.log(gameView);
         break;
       case `one-of-three`:
-        // console.log(`One-of-three chosen`);
         gameView = new OneOfThreeGame(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = (correct) => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
@@ -93,11 +84,7 @@ class GameScreen {
       changeScreen(this.element);
       this.startTimer();
     } else {
-      // console.log(`GAME OVER!`);
-      // const statsView = new StatsView(this.model.state);
-      // changeScreen(statsView.element);
       this.saveGameStats(this.model.state);
-      // console.log(`Надо показать статистику!`);
       Application.showStats(this.model.state);
     }
   }
@@ -117,13 +104,11 @@ class GameScreen {
   }
 
   _tick() {
-    // console.log(this.model.state.time);
     if (this.model.state.time) {
       this.model.state.time--;
       this.updateTime();
       this.blick();
     } else {
-      // console.log(`ChangeLevel should work here!`);
       this.changeLevel(this.model.state);
       return true;
     }

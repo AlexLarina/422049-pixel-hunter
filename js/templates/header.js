@@ -1,13 +1,4 @@
-// import {getGreetingScreen} from "./greeting";
 import HeaderView from "../view/header-view";
-
-/* const getHeader = (state) => {
-  const header = new HeaderView(state);
-  header.onRestart = () => {
-    // getGreetingScreen();
-  };
-  return header.element;
-}; */
 
 class Header {
   constructor(state, click) {
@@ -26,4 +17,4 @@ class Header {
 }
 
 export default Header;
-// export {getHeader};
+

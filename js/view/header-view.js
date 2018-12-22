@@ -35,7 +35,6 @@ class HeaderView extends AbstractView {
     const backButton = this.element.querySelector(`.back`);
     backButton.addEventListener(`click`, (evt) => {
       evt.preventDefault();
-      // console.log(`From level screen clicked!`);
       this.onRestart();
     });
   }

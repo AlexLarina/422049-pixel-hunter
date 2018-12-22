@@ -1,6 +1,5 @@
 import {INITIAL_STATE, AnswerType} from "../data/data";
 import {die} from "../game/game_state";
-import tick from "../game/timer";
 
 const Result = {
   CORRECT: `correct`,
@@ -69,8 +68,6 @@ class GameModel {
           resultToUpload.push(Result.WRONG);
       }
     });
-    // console.log(`На сервер уедет вот такая штука: `);
-    // console.log(resultToUpload);
     return resultToUpload;
   }
 }

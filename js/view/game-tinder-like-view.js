@@ -2,7 +2,6 @@ import AbstractView from "./abstract-view";
 import {QuestionWithAnswer} from "./question-view";
 import CurrentStatsView from "./current-stats-view";
 import HeaderView from "./header-view";
-import {die} from "../game/game_state";
 
 class TinderLikeGameView extends AbstractView {
   constructor(state, level) {
@@ -42,27 +41,21 @@ class TinderLikeGameView extends AbstractView {
       const answerData = new FormData(gameForm);
 
       answerData.set(evt.target.name, evt.target.value);
-      // console.log(compareAnswerHash[answerData.getAll(`question1`)[0]]);
 
       if (answerData.has(`question1`)) {
         if (compareAnswerHash[answerData.getAll(`question1`)[0]] === this.level.answers[0].type) {
           this.result = `correct`;
           this.onSaveAnswer(true);
-          // console.log(`RIGHT ANSWER!`);
         } else {
           this.result = `wrong`;
           this.onSaveAnswer(false);
-          // die(this.state);
-          // console.log(`WRONG ANSWER!`);
         }
-        // this.onSaveAnswer();
         this.onGameContinue();
       }
     });
 
     backButton.addEventListener(`click`, (evt) => {
       evt.preventDefault();
-      // console.log(`From level screen clicked!`);
       this.onRestart();
     });
   }

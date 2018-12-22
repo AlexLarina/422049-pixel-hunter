@@ -2,7 +2,6 @@ import AbstractView from "./abstract-view";
 import {QuestionWithAnswer} from "./question-view";
 import CurrentStatsView from "./current-stats-view";
 import HeaderView from "./header-view";
-import {die} from "../game/game_state";
 
 class GameTwoOfTwoView extends AbstractView {
   constructor(state, level) {
@@ -45,22 +44,16 @@ class GameTwoOfTwoView extends AbstractView {
 
     gameForm.addEventListener(`change`, (evt) => {
       answerData.set(evt.target.name, evt.target.value);
-      // console.log(compareAnswerHash[answerData.getAll(`question1`)[0]]);
       if (answerData.has(`question1`) && answerData.has(`question2`)) {
 
         if (compareAnswerHash[answerData.getAll(`question1`)[0]] === this.level.answers[0].type &&
           compareAnswerHash[answerData.getAll(`question2`)[0]] === this.level.answers[1].type) {
           this.result = `correct`;
           this.onSaveAnswer(true);
-          // console.log(`RIGHT ANSWER!`);
         } else {
           this.result = `wrong`;
           this.onSaveAnswer(false);
-          // die(this.state);
-          // console.log(`WRONG ANSWER!`);
         }
-
-        this.onSaveAnswer();
         this.onGameContinue();
         gameForm.reset();
       }
@@ -68,7 +61,6 @@ class GameTwoOfTwoView extends AbstractView {
 
     backButton.addEventListener(`click`, (evt) => {
       evt.preventDefault();
-      // console.log(`From level screen clicked!`);
       this.onRestart();
     });
   }
