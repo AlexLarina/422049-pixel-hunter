@@ -14,7 +14,7 @@ class RulesScreen {
 
   bind(funcBack, funcForward) {
     this.rulesScreen.onGreeting = funcBack;
-    this.rulesScreen.onGameStart = funcForward;
+    this.rulesScreen.onGameStart = (userName) => funcForward(userName);
   }
 }
 
