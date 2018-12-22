@@ -42,20 +42,11 @@ class GameModel {
   }
 
   die() {
-    // кажется, это тут не используется
     this._state = die(this._state);
-  }
-
-  restart() {
-    this._state = INITIAL_STATE;
   }
 
   isDead() {
     return this._state.lives <= 0;
-  }
-
-  tick() {
-    this._state = tick(this._state);
   }
 
   handleStats() {

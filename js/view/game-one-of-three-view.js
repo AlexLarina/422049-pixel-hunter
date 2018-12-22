@@ -42,7 +42,6 @@ class OneOfThreeGameView extends AbstractView {
       const answerNumber = evt.target.alt.split(` `)[1];
       // console.log(this.level.answers[answerNumber - 1].type);
       if (this.level.answers[answerNumber - 1].type === `painting`) {
-        this.onSaveAnswer(true);
         this.result = `correct`;
         this.onSaveAnswer(true);
       } else {

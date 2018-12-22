@@ -57,15 +57,9 @@ class StatsView extends AbstractView {
     return fastAnswers.length;
   }
 
-  getFinalScore(state, answers) {
-    return this.getTotalScore(answers) + this.getSpeedBonus(answers) * Bonuses.FAST
-      + state.lives * Bonuses.LIVES + this.slowSconce(answers) * Bonuses.SLOW;
-  }
-
   bind() {
     const backButton = this.element.querySelector(`.back`);
     backButton.addEventListener(`click`, () => {
-      // console.log(`From stats backbutton clicked!`);
       this.onGreeting();
     });
   }

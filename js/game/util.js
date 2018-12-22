@@ -1,9 +1,3 @@
-const getElementFromTemplate = (template) => {
-  const wrapper = document.createElement(`section`);
-  wrapper.innerHTML = template.trim();
-  return wrapper;
-};
-
 const mainElement = document.querySelector(`#main`);
 
 const changeScreen = (element) => {
@@ -11,4 +5,4 @@ const changeScreen = (element) => {
   mainElement.appendChild(element);
 };
 
-export {getElementFromTemplate, changeScreen, mainElement};
+export {changeScreen, mainElement};

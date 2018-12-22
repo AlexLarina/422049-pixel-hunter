@@ -116,11 +116,6 @@ class GameScreen {
     this.timer.innerText = this.model.state.time;
   }
 
-
-  stopGame() {
-    clearInterval(this._timer);
-  }
-
   _tick() {
     // console.log(this.model.state.time);
     if (this.model.state.time) {
