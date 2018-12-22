@@ -51,10 +51,12 @@ class GameTwoOfTwoView extends AbstractView {
         if (compareAnswerHash[answerData.getAll(`question1`)[0]] === this.level.answers[0].type &&
           compareAnswerHash[answerData.getAll(`question2`)[0]] === this.level.answers[1].type) {
           this.result = `correct`;
+          this.onSaveAnswer(true);
           // console.log(`RIGHT ANSWER!`);
         } else {
           this.result = `wrong`;
-          die(this.state);
+          this.onSaveAnswer(false);
+          // die(this.state);
           // console.log(`WRONG ANSWER!`);
         }
 

@@ -47,13 +47,15 @@ class TinderLikeGameView extends AbstractView {
       if (answerData.has(`question1`)) {
         if (compareAnswerHash[answerData.getAll(`question1`)[0]] === this.level.answers[0].type) {
           this.result = `correct`;
+          this.onSaveAnswer(true);
           // console.log(`RIGHT ANSWER!`);
         } else {
           this.result = `wrong`;
-          die(this.state);
+          this.onSaveAnswer(false);
+          // die(this.state);
           // console.log(`WRONG ANSWER!`);
         }
-        this.onSaveAnswer();
+        // this.onSaveAnswer();
         this.onGameContinue();
       }
     });

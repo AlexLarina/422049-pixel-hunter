@@ -87,7 +87,6 @@ class StatsView extends AbstractView {
   }
 
   getResultTable(result) {
-    result = result.reverse();
     return result.map((res, index) => `<table class="result__table">
           ${this.statsRow(res, index)}
           </table>`

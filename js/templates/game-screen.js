@@ -38,9 +38,11 @@ class GameScreen {
       case `two-of-two`:
         // console.log(`Two-of-two chosen`);
         gameView = new GameTwoOfTwoView(state, state.levelsData[state.level]);
-        gameView.onSaveAnswer = () => {
+        gameView.onSaveAnswer = (correct) => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
-          this.model.die();
+          if (!correct) {
+            this.model.die();
+          }
           this.changeLevel(state);
         };
         gameView.onRestart = () => {
@@ -51,9 +53,11 @@ class GameScreen {
       case `tinder-like`:
         // console.log(`Tinder like chosen`);
         gameView = new TinderLikeGameView(state, state.levelsData[state.level]);
-        gameView.onSaveAnswer = () => {
+        gameView.onSaveAnswer = (correct) => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
-          this.model.die();
+          if (!correct) {
+            this.model.die();
+          }
           this.changeLevel(state);
         };
         gameView.onRestart = () => {
@@ -64,9 +68,11 @@ class GameScreen {
       case `one-of-three`:
         // console.log(`One-of-three chosen`);
         gameView = new OneOfThreeGame(state, state.levelsData[state.level]);
-        gameView.onSaveAnswer = () => {
+        gameView.onSaveAnswer = (correct) => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
-          this.model.die();
+          if (!correct) {
+            this.model.die();
+          }
           this.changeLevel(state);
         };
         gameView.onRestart = () => {
