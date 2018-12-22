@@ -56,17 +56,18 @@ class Application {
     changeScreen(gameScreen.element);
   }
 
-  static showStats(state) {
+  static showStats(model) {
     // const statsView = new StatsView(this.model.state);
     //const previousGames = Backend.downloadResults(state.playerName);
     //console.log(`previousGames[0]:`);
     //console.log(previousGames[0]);
-    const statsScreen = new GameStatsScreen(state, this.showGreeting.bind(this));
+    const userName = model.userName;
+    const statsScreen = new GameStatsScreen(model.state, this.showGreeting.bind(this));
     changeScreen(statsScreen.element);
 
     // const backend = new Backend();
-    Backend.uploadResults(state.previousGames, state.playerName).
-    then(() => Backend.downloadResults(state.playerName)).
+    Backend.uploadResults(model.state.previousGames, userName).
+    then(() => Backend.downloadResults(userName)).
     then((data) => statsScreen.showPreviousGamesStats(data)).
     catch(this.showError);
     // changeScreen(statsScreen.element);

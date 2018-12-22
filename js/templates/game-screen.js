@@ -93,7 +93,7 @@ class GameScreen {
       // changeScreen(statsView.element);
       this.saveGameStats(this.model.state);
       console.log(`Надо показать статистику!`);
-      Application.showStats(this.model.state);
+      Application.showStats(this.model);
     }
   }
 

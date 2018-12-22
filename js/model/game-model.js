@@ -13,8 +13,8 @@ const timeIndex = 0;
 const resultIndex = 1;
 
 class GameModel {
-  constructor(playerName, data) {
-    this.playerName = playerName;
+  constructor(userName, data) {
+    this.userName = userName;
     this._state = null;
     this.levelsData = data;
   }
