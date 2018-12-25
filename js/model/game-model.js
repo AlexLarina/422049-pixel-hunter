@@ -1,12 +1,6 @@
-import {INITIAL_STATE, AnswerType} from "../data/data";
+import {INITIAL_STATE, AnswerType, Result} from "../data/data";
 import {die} from "../game/game_state";
 
-const Result = {
-  CORRECT: `correct`,
-  WRONG: `wrong`,
-  FAST: `fast`,
-  SLOW: `slow`
-};
 
 const timeIndex = 0;
 const resultIndex = 1;
@@ -52,16 +46,16 @@ class GameModel {
     const resultToUpload = [];
     this._state.userAnswers.forEach((element) => {
       switch (true) {
-        case (element[resultIndex] === `wrong`):
+        case (element[resultIndex] === Result.WRONG):
           resultToUpload.push(Result.WRONG);
           break;
-        case (element[resultIndex] === `correct` && element[timeIndex] <= AnswerType.SLOW && element[timeIndex] >= AnswerType.FAST):
+        case (element[resultIndex] === Result.CORRECT && element[timeIndex] <= AnswerType.SLOW && element[timeIndex] >= AnswerType.FAST):
           resultToUpload.push(Result.CORRECT);
           break;
-        case (element[resultIndex] === `correct` && element[timeIndex] > AnswerType.SLOW):
+        case (element[resultIndex] === Result.CORRECT && element[timeIndex] > AnswerType.SLOW):
           resultToUpload.push(Result.SLOW);
           break;
-        case (element[resultIndex] === `correct` && element[timeIndex] < AnswerType.FAST):
+        case (element[resultIndex] === Result.CORRECT && element[timeIndex] < AnswerType.FAST):
           resultToUpload.push(Result.FAST);
           break;
         default:

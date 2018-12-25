@@ -2,6 +2,7 @@ import AbstractView from "./abstract-view";
 import {QuestionWithAnswer} from "./question-view";
 import CurrentStatsView from "./current-stats-view";
 import HeaderView from "./header-view";
+import {Result} from "../data/data";
 
 class TinderLikeGameView extends AbstractView {
   constructor(state, level) {
@@ -44,10 +45,10 @@ class TinderLikeGameView extends AbstractView {
 
       if (answerData.has(`question1`)) {
         if (compareAnswerHash[answerData.getAll(`question1`)[0]] === this.level.answers[0].type) {
-          this.result = `correct`;
+          this.result = Result.CORRECT;
           this.onSaveAnswer(true);
         } else {
-          this.result = `wrong`;
+          this.result = Result.WRONG;
           this.onSaveAnswer(false);
         }
         this.onGameContinue();

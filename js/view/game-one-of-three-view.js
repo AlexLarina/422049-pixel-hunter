@@ -2,6 +2,7 @@ import AbstractView from "./abstract-view";
 import {Question} from "./question-view";
 import CurrentStatsView from "./current-stats-view";
 import HeaderView from "./header-view";
+import {Result, ANSWER_TYPE_PAINTING} from "../data/data";
 
 class OneOfThreeGameView extends AbstractView {
   constructor(state, level) {
@@ -39,11 +40,11 @@ class OneOfThreeGameView extends AbstractView {
 
     answerForm.addEventListener(`click`, (evt) => {
       const answerNumber = evt.target.alt.split(` `)[1];
-      if (this.level.answers[answerNumber - 1].type === `painting`) {
-        this.result = `correct`;
+      if (this.level.answers[answerNumber - 1].type === ANSWER_TYPE_PAINTING) {
+        this.result = Result.CORRECT;
         this.onSaveAnswer(true);
       } else {
-        this.result = `wrong`;
+        this.result = Result.WRONG;
         this.onSaveAnswer(false);
       }
       this.onGameContinue();

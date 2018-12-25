@@ -1,26 +1,29 @@
-export const countGameScore = (answers, restOfLives) => {
+import {LEVELS, CORRECT_SCORE, AnswerType, Bonuses} from "./data";
+
+const countGameScore = (answers, restOfLives) => {
   let totalScore = 0;
 
-  if (answers.length < 10) {
+  if (answers.length < LEVELS) {
     totalScore = -1;
   } else {
     answers.forEach((it) => {
       if (it.correctAnswer) {
-        totalScore += 100;
+        totalScore += CORRECT_SCORE;
       }
 
-      if (it.time < 10) {
-        totalScore += 50;
+      if (it.time < AnswerType.FAST) {
+        totalScore += Bonuses.FAST;
       }
 
-      if (it.time > 20) {
-        totalScore -= 50;
+      if (it.time > AnswerType.SLOW) {
+        totalScore += Bonuses.SLOW;
       }
     });
 
-    totalScore += restOfLives * 50;
+    totalScore += restOfLives * Bonuses.LIVES;
   }
 
   return totalScore;
 };
 
+export {countGameScore};

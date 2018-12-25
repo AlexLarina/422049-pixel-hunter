@@ -3,7 +3,7 @@ import GameTwoOfTwoView from "../view/game-two-of-two-view";
 import TinderLikeGameView from "../view/game-tinder-like-view";
 import OneOfThreeGame from "../view/game-one-of-three-view";
 import {changeScreen} from "../game/util";
-import {INITIAL_STATE} from "../data/data";
+import {INITIAL_STATE, GameType, TIMEOUT, BLINCKING_TIME} from "../data/data";
 import Application from "../app";
 
 class GameScreen {
@@ -31,7 +31,7 @@ class GameScreen {
   getGameView(state) {
     let gameView;
     switch (state.levelsData[state.level].type) {
-      case `two-of-two`:
+      case GameType.TWO_OF_TWO:
         gameView = new GameTwoOfTwoView(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = (correct) => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
@@ -44,7 +44,7 @@ class GameScreen {
           Application.showGreeting();
         };
         break;
-      case `tinder-like`:
+      case GameType.TINDER_LIKE:
         gameView = new TinderLikeGameView(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = (correct) => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
@@ -57,7 +57,7 @@ class GameScreen {
           Application.showGreeting();
         };
         break;
-      case `one-of-three`:
+      case GameType.ONE_OF_THREE:
         gameView = new OneOfThreeGame(state, state.levelsData[state.level]);
         gameView.onSaveAnswer = (correct) => {
           this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
@@ -120,7 +120,7 @@ class GameScreen {
       if (!this._tick()) {
         this.startTimer();
       }
-    }, 1000);
+    }, TIMEOUT);
   }
 
   stopTimer() {
@@ -132,7 +132,7 @@ class GameScreen {
   }
 
   blick() {
-    if (this.model.state.time <= 5) {
+    if (this.model.state.time <= BLINCKING_TIME) {
       this.timer.classList.add(`blink`);
     }
   }

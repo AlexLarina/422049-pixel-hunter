@@ -1,4 +1,5 @@
 import AbstractView from "./abstract-view";
+import {Bonuses, Result, LEVELS} from "../data/data";
 
 const AnswerTypeScore = {
   wrong: 0,
@@ -6,6 +7,8 @@ const AnswerTypeScore = {
   fast: 150,
   slow: 50
 };
+
+const FAIL_RESULT = `fail`;
 
 class StatsView extends AbstractView {
   constructor() {
@@ -26,7 +29,7 @@ class StatsView extends AbstractView {
         </button>
       </header>
       <section class="result">
-      
+
       </section>`;
   }
 
@@ -81,10 +84,9 @@ class StatsView extends AbstractView {
     let total;
     total = result.stats.reduce((accumulator, currentValue) => {
       return currentValue === `correct` && (accumulator + AnswerTypeScore[currentValue]);
-      // return accumulator + AnswerTypeScore[currentValue];
     });
 
-    total += result.lives * 50;
+    total += result.lives * Bonuses.LIVES;
 
     return total;
   }
@@ -124,7 +126,7 @@ class StatsView extends AbstractView {
   countFast(stats) {
     let num = 0;
     stats.forEach((it) => {
-      if (it === `fast`) {
+      if (it === Result.FAST) {
         num++;
       }
     });
@@ -135,7 +137,7 @@ class StatsView extends AbstractView {
   countSlow(stats) {
     let num = 0;
     stats.forEach((it) => {
-      if (it === `slow`) {
+      if (it === Result.SLOW) {
         num++;
       }
     });
@@ -144,12 +146,12 @@ class StatsView extends AbstractView {
   }
 
   countLives(result) {
-    return result.lives * 50;
+    return result.lives * Bonuses.LIVES;
   }
 
   getFinal(result) {
     if (!this.isWin(result)) {
-      return `fail`;
+      return FAIL_RESULT;
     } else {
       return this.countScore(result) + this.countSlow(result) + this.countFast(result) + this.countLives(result);
     }
@@ -159,7 +161,7 @@ class StatsView extends AbstractView {
     return `<ul class="stats">
        ${answers.map((answer) =>
     `<li class="stats__result stats__result--${answer}"></li>`).join(``)}
-       ${new Array(10 - answers.length)
+       ${new Array(LEVELS - answers.length)
       .fill(`<li class="stats__result stats__result--unknown"></li>`).join(``)}
          </ul>`;
   }

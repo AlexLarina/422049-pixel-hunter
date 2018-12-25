@@ -1,5 +1,5 @@
 import AbstractView from "./abstract-view";
-import {AnswerType} from "../data/data";
+import {AnswerType, Result, AnswerStatus} from "../data/data";
 
 class CurrentStatsView extends AbstractView {
   constructor(state) {
@@ -34,20 +34,20 @@ class CurrentStatsView extends AbstractView {
     const resultIndex = 1;
 
     switch (true) {
-      case (answer[resultIndex] === `wrong`):
-        status = `wrong`;
+      case (answer[resultIndex] === Result.WRONG):
+        status = AnswerStatus.WRONG;
         break;
-      case (answer[resultIndex] === `correct` && answer[timeIndex] <= AnswerType.SLOW && answer[timeIndex] >= AnswerType.FAST):
-        status = `correct`;
+      case (answer[resultIndex] === Result.CORRECT && answer[timeIndex] <= AnswerType.SLOW && answer[timeIndex] >= AnswerType.FAST):
+        status = AnswerStatus.CORRECT;
         break;
-      case (answer[resultIndex] === `correct` && answer[timeIndex] > AnswerType.SLOW):
-        status = `slow`;
+      case (answer[resultIndex] === Result.CORRECT && answer[timeIndex] > AnswerType.SLOW):
+        status = AnswerStatus.SLOW;
         break;
-      case (answer[resultIndex] === `correct` && answer[timeIndex] < AnswerType.FAST):
-        status = `fast`;
+      case (answer[resultIndex] === Result.CORRECT && answer[timeIndex] < AnswerType.FAST):
+        status = AnswerStatus.FAST;
         break;
       default:
-        status = `unknown`;
+        status = AnswerStatus.UNKNOWN;
     }
 
     return status;
