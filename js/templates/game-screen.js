@@ -33,46 +33,32 @@ class GameScreen {
     switch (state.levelsData[state.level].type) {
       case GameType.TWO_OF_TWO:
         gameView = new GameTwoOfTwoView(state, state.levelsData[state.level]);
-        gameView.onSaveAnswer = (correct) => {
-          this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
-          if (!correct) {
-            this.model.die();
-          }
-          this.changeLevel(state);
-        };
-        gameView.onRestart = () => {
-          Application.showGreeting();
-        };
+        this.handleGameView(gameView, state);
         break;
       case GameType.TINDER_LIKE:
         gameView = new TinderLikeGameView(state, state.levelsData[state.level]);
-        gameView.onSaveAnswer = (correct) => {
-          this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
-          if (!correct) {
-            this.model.die();
-          }
-          this.changeLevel(state);
-        };
-        gameView.onRestart = () => {
-          Application.showGreeting();
-        };
+        this.handleGameView(gameView, state);
         break;
       case GameType.ONE_OF_THREE:
         gameView = new OneOfThreeGame(state, state.levelsData[state.level]);
-        gameView.onSaveAnswer = (correct) => {
-          this.model.acceptAnswer((INITIAL_STATE.time - state.time), gameView.getResult());
-          if (!correct) {
-            this.model.die();
-          }
-          this.changeLevel(state);
-        };
-        gameView.onRestart = () => {
-          Application.showGreeting();
-        };
+        this.handleGameView(gameView, state);
         break;
     }
 
     return gameView.element;
+  }
+
+  handleGameView(view, state) {
+    view.onSaveAnswer = (correct) => {
+      this.model.acceptAnswer((INITIAL_STATE.time - state.time), view.getResult());
+      if (!correct) {
+        this.model.die();
+      }
+      this.changeLevel(state);
+    };
+    view.onRestart = () => {
+      Application.showGreeting();
+    };
   }
 
   changeLevel() {
@@ -108,11 +94,10 @@ class GameScreen {
       this.model.state.time--;
       this.updateTime();
       this.blick();
-    } else {
-      this.changeLevel(this.model.state);
-      return true;
+      return false;
     }
-    return false;
+    this.changeLevel(this.model.state);
+    return true;
   }
 
   startTimer() {

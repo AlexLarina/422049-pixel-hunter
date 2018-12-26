@@ -152,9 +152,8 @@ class StatsView extends AbstractView {
   getFinal(result) {
     if (!this.isWin(result)) {
       return FAIL_RESULT;
-    } else {
-      return this.countScore(result) + this.countSlow(result) + this.countFast(result) + this.countLives(result);
     }
+    return this.countScore(result) + this.countSlow(result) + this.countFast(result) + this.countLives(result);
   }
 
   renderStats(answers) {

@@ -2,11 +2,7 @@ const URL = `https://es.dump.academy/pixel-hunter`;
 const APP_ID = 422049;
 
 const checkStatus = (response) => {
-  if (response.ok) {
-    return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
+  return response.ok && response;
 };
 
 const toJSON = (res) => res.json();
